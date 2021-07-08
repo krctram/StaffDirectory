@@ -9,6 +9,10 @@ import styles from "./StaffdirectoryWebPart.module.scss";
 import * as strings from "StaffdirectoryWebPartStrings";
 import { SPComponentLoader } from "@microsoft/sp-loader";
 SPComponentLoader.loadScript("https://ajax.aspnetcdn.com/ajax/4.0/1/MicrosoftAjax.js");
+
+SPComponentLoader.loadCss("https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css");
+
+
 import * as $ from "jquery";
 import { sp } from "@pnp/sp/presets/all";
 import "@pnp/sp/files";
@@ -16,6 +20,7 @@ import "@pnp/sp/folders";
 import "@pnp/sp/profiles";
 import "@pnp/sp/site-groups";
 SPComponentLoader.loadScript("https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js");
+import "../../ExternalRef/Js/select2.min.js";
 
 import "../../ExternalRef/CSS/style.css";
 
@@ -691,7 +696,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
      </div>
      <div class="staff-affiliates-edit-info">
      <div class="d-flex">
-     <label>Staff Affiliates</label>
+     <label>Staff Affiliation</label>
      <div class="w-100"><select id="StaffAffiliatesEdit"></select></div>
      </div>
      </div>
@@ -2110,7 +2115,7 @@ const onLoadData = async () => {
 
   await sp.web.getList(listUrl + "StaffDirectory").items.select("*","User/EMail","User/Title","User/FirstName","User/LastName","User/JobTitle","User/UserName","Assistant/EMail","Assistant/Title","User/Id","SDGOfficeDetails/Office","SDGOfficeDetails/ID").expand("User,Assistant,SDGOfficeDetails").get().then((listitem: any) => {
     let tempArr = listitem.filter((l)=>l.SDGOfficeDetails != null)
-        console.log(tempArr);
+        //console.log(tempArr);
       listitem.forEach((li) => {
         // 
         let EndDateArr = [];
@@ -2148,7 +2153,7 @@ const onLoadData = async () => {
     }
         
       });
-      console.log(EndDateArr.sort(sortFunction));
+      //console.log(EndDateArr.sort(sortFunction));
        EndDateArr =EndDateArr.sort(sortFunction);
       if(EndDateArr.length>0)
       {
@@ -2350,7 +2355,7 @@ async function getTableData() {
         <div class="nextAvailDate">${avli.Availability == 0 ?`${avli.NextAvailDate} (${100 - avli.EndPercentage} %)` :""}</div>
         
         <div class="availability-progress-bar" style="">
-        <div class="progress-value" style="height:100%;width:${avli.Availability}%; background: ${avli.Availability <= 50? "#45b345":"#45b345"}"></div>
+        <div class="progress-value" style="height:100%;width:${100 - avli.Availability}%; background: ${avli.Availability <= 50? "#45b345":"#45b345"}"></div>
         </div>
         <span style="color:${avli.Availability <= 50? "#000000":"#000000"}">${avli.Availability}%</span></div>
         </td></tr>`
@@ -2758,6 +2763,8 @@ async function getTableData() {
 
   /* newly added for Assitant*/
   $("#drpAssistantforEmployee,#drpStaffAssitant").html(htmlForAssitant);
+
+  (<any>$("#drpAssistantforEmployee,#drpStaffAssitant")).select2();
 
   $("#SdhEmpTbody").html(EmpTable);
   $("#SdhOutsideTbody").html(OutTable);
@@ -3971,7 +3978,7 @@ var ofcAdd=[]
 
   var fetchShortBioVal=SelectedUserProfile[0].ShortBio.replace(reg1, "").replace(reg2, "");
   fetchShortBioVal=fetchShortBioVal.split("<br>").join("\n");
-console.log(SelectedUserProfile[0].Location);
+//console.log(SelectedUserProfile[0].Location);
 
   $("#StaffFunctionEdit").val(SelectedUserProfile[0].Title);
   $("#StaffAffiliatesEdit").val(SelectedUserProfile[0].Affiliation);
@@ -4005,7 +4012,10 @@ console.log(SelectedUserProfile[0].Location);
   $("#BillingRateCommentsEdit").val(SelectedUserProfile[0].BillingRateComments);
 
   if(SelectedUserProfile[0].AssisstantName)
+  {
   $("#drpStaffAssitant").val(SelectedUserProfile[0].AssisstantName);
+  (<any>$("#drpStaffAssitant")).select2();
+}
   else
   $("#drpStaffAssitant").val("");
 
@@ -4252,7 +4262,7 @@ const useravailabilityDetails = async() =>{
     }
     
   });
-  console.log(EndDateArr.sort(sortFunction));
+  //console.log(EndDateArr.sort(sortFunction));
 
   userAvailTable?userAvailTable.destroy():""
   $("#UserAvailabilityTbody").html("");
@@ -4364,7 +4374,7 @@ const useravailabilityDetails = async() =>{
             }          
             }
           }
-                   console.log(availArr);
+                  //console.log(availArr);
           availArr= availArr.sort(sortFunction);
 
           availArr = availArr.reduce(function (item, e1) {  
@@ -4375,8 +4385,8 @@ const useravailabilityDetails = async() =>{
             }  
             return item;  
         }, []);  
-        console.log("availArr");
-        console.log(availArr);
+        //console.log("availArr");
+        //console.log(availArr);
 
         for(var i=0;i<availArr.length;i++){
 
@@ -4474,7 +4484,7 @@ const useravailabilityDetails = async() =>{
             }          
             }
           }
-          console.log(availArr1);
+          //console.log(availArr1);
           availArr1= availArr1.sort(sortFunction);
           availArr1 = availArr1.reduce(function (item, e1) {  
             var matches = item.filter(function (e2)  
@@ -4484,8 +4494,8 @@ const useravailabilityDetails = async() =>{
             }  
             return item;  
         }, []);  
-        console.log("availArr1");
-        console.log(availArr1);
+       // console.log("availArr1");
+        //console.log(availArr1);
 
         for(var i=0;i<availArr1.length;i++){
 

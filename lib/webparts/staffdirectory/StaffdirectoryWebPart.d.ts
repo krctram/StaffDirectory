@@ -5,6 +5,7 @@ import "@pnp/sp/files";
 import "@pnp/sp/folders";
 import "@pnp/sp/profiles";
 import "@pnp/sp/site-groups";
+import "../../ExternalRef/Js/select2.min.js";
 import "../../ExternalRef/CSS/style.css";
 export interface IStaffdirectoryWebPartProps {
     description: string;
