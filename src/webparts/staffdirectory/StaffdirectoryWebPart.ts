@@ -15,10 +15,14 @@ SPComponentLoader.loadCss("https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dis
 
 import * as $ from "jquery";
 import { sp } from "@pnp/sp/presets/all";
+import "../../ExternalRef/Js/jquery-1.12.4.js";
+import "../../ExternalRef/Js/jquery-ui.js";
 import "@pnp/sp/files";
 import "@pnp/sp/folders";
 import "@pnp/sp/profiles";
 import "@pnp/sp/site-groups";
+
+SPComponentLoader.loadCss("https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css");
 SPComponentLoader.loadScript("https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js");
 import "../../ExternalRef/Js/select2.min.js";
 
@@ -704,7 +708,10 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
      <h4>Assisstant</h4>
      <div class="assisstant-name d-flex">
      <label>Name</label>
-     <div class="w-100"><div id="peoplepickerText" title="APickerField" style="display:none"></div><select id="drpStaffAssitant"></select></div>
+     <div class="w-100"><div id="peoplepickerText" title="APickerField" style="display:none"></div>
+     <!--<select id="drpStaffAssitant"></select>-->
+     <input type="text" id="searchStaffAssitant" placeholder="" />
+     </div>
 
      </div>
      </div>
@@ -2873,9 +2880,18 @@ async function getTableData() {
   $("#drpAssistantforOutside,#drpAssistantforOutside,#drpAssistantforAffiliates,#drpAssistantforAlumni,#drpAssistantforAllPeople").html(AssDDHtml);
 
   /* newly added for Assitant*/
-  $("#drpAssistantforEmployee,#drpStaffAssitant").html(htmlForAssitant);
+ // $("#drpAssistantforEmployee,#drpStaffAssitant").html(htmlForAssitant);
+$("#drpAssistantforEmployee").html(htmlForAssitant);
+  //(<any>$("#drpAssistantforEmployee,#drpStaffAssitant")).select2();
 
-  (<any>$("#drpAssistantforEmployee,#drpStaffAssitant")).select2();
+  (<any>$("#searchStaffAssitant")).autocomplete({
+    source: arrAssitant,
+    appendTo: $('#searchStaffAssitant').parents().eq(0),
+    select: function (event, ui) {
+      if (ui.item.value)
+        $('#searchStaffAssitant').val(ui.item.value);
+    }
+  })
 
   $("#SdhEmpTbody").html(EmpTable);
   $("#SdhOutsideTbody").html(OutTable);
@@ -4124,11 +4140,13 @@ var ofcAdd=[]
 
   if(SelectedUserProfile[0].AssisstantName)
   {
-  $("#drpStaffAssitant").val(SelectedUserProfile[0].AssisstantName);
-  (<any>$("#drpStaffAssitant")).select2();
+    $("#searchStaffAssitant").val(SelectedUserProfile[0].AssisstantName);
+  //$("#drpStaffAssitant").val(SelectedUserProfile[0].AssisstantName);
+  //(<any>$("#drpStaffAssitant")).select2();
 }
   else
-  $("#drpStaffAssitant").val("");
+  $("#searchStaffAssitant").val("");
+  //$("#drpStaffAssitant").val("");
 
   if(SelectedUserProfile[0].StaffStatus == "Part-time"){
     $("#workscheduleEdit").html("");
@@ -4269,7 +4287,8 @@ insertObj={
   stafffunction:$("#StaffFunctionEdit").val(),
   SDGAffiliation:$("#StaffAffiliatesEdit").val(),
   ///AssistantId: profileID,
-  AssisstantName:$("#drpStaffAssitant option:selected").val(),
+  //AssisstantName:$("#drpStaffAssitant option:selected").val(),
+ AssisstantName:$("#searchStaffAssitant").val(),
   ShowAvailability:$('#show-availability').prop('checked')
 }
     }

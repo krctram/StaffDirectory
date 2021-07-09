@@ -1,6 +1,8 @@
 import { Version } from "@microsoft/sp-core-library";
 import { IPropertyPaneConfiguration } from "@microsoft/sp-property-pane";
 import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
+import "../../ExternalRef/Js/jquery-1.12.4.js";
+import "../../ExternalRef/Js/jquery-ui.js";
 import "@pnp/sp/files";
 import "@pnp/sp/folders";
 import "@pnp/sp/profiles";

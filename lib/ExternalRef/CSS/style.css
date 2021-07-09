@@ -1275,7 +1275,7 @@ label.switch {
 .w100 {
   min-width: 100px;
 }
-#drpStaffAssitant {
+/* #drpStaffAssitant {
   width: 200px !important;
 }
 .select2-container--default .select2-selection--single {
@@ -1283,4 +1283,11 @@ label.switch {
   border: 1px solid #a0a0a0 !important;
   border-radius: 0px !important;
   height: 32px !important;
-}
+} */
+
+/* .ui-autocomplete {
+  min-height: auto;
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+} */
