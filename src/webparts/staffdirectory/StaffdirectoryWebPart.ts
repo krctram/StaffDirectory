@@ -2118,11 +2118,17 @@ const onLoadData = async () => {
         //console.log(tempArr);
       listitem.forEach((li) => {
         // 
-        let EndDateArr = [];
+        var EndDateArr = [];
         let NextAvailDate = ""
         let modifiedArray =[];
         let fDateArr =[];
-        let EndPercentage = 0
+        let EndPercentage = 0;
+        var NextArr=[];
+  var StartArr=[];
+  var EndArr=[];
+  var availArr=[];
+  var WeekArr=[];
+  var FinalArr=[];
         // 
         
       var userPercentage=0;
@@ -2154,49 +2160,154 @@ const onLoadData = async () => {
         
       });
       //console.log(EndDateArr.sort(sortFunction));
-       EndDateArr =EndDateArr.sort(sortFunction);
+      //  EndDateArr =EndDateArr.sort(sortFunction);
+      // if(EndDateArr.length>0)
+      // {
+      //   for(let i=0;i<EndDateArr.length; i++)
+      //   {
+      //     fDateArr =[];
+      //     var endPercentage=0
+      //     var leastEndDate =EndDateArr[i];
+      //      modifiedArray.forEach((cal)=>{
+      //       var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
+      //       if(new Date(<any>edate).toLocaleDateString()==new Date(leastEndDate).toLocaleDateString())
+      //       fDateArr.push(cal)
+      //     });
+      //     fDateArr.map((b)=>b.Percentage?endPercentage+=parseInt(b.Percentage):endPercentage+=0);
+      //     if(endPercentage<100){
+
+      //       // var nextDay = new Date(leastEndDate);
+      //       // nextDay.setDate(nextDay.getDate() + 1);
+      //       // NextAvailDate = nextDay.toLocaleDateString();
+      //       EndPercentage = endPercentage;
+      //       NextAvailDate = new Date(leastEndDate).toLocaleDateString();
+
+      //       // $('.todayAvail').html(`<label>Next available on :${new Date(leastEndDate).toLocaleDateString()}(${100-endPercentage}% Available)</label>`);
+      //       break;
+      //     }
+      //     else if(i==EndDateArr.length-1)
+      //     {
+      //       var tomorrow = new Date(leastEndDate);
+      //       tomorrow.setDate(tomorrow.getDate() + 1);
+      //       NextAvailDate = tomorrow.toLocaleDateString();
+      //       // $('.todayAvail').html(`<label>Next available on :${tomorrow.toLocaleDateString()}(${100}% Available)</label>`);
+      //       break;
+      //     }
+      //   }
+  
+      // }
+      // else{
+        
+      //   NextAvailDate = new Date().toLocaleDateString();
+      //   // NextAvailDate = new Date(leastEndDate).toLocaleDateString();
+      //   // $('.todayAvail').html(`<label>Next available on :${new Date(leastEndDate).toLocaleDateString()}</label>`)
+      // }
+      // console.log(NextAvailDate);
+
+
+      EndDateArr =EndDateArr.sort(sortFunction);
       if(EndDateArr.length>0)
       {
+          NextArr =[];
+          StartArr=[];
+          EndArr=[];
+          availArr=[];
+          WeekArr=[];
         for(let i=0;i<EndDateArr.length; i++)
         {
-          fDateArr =[];
+          fDateArr =[]; 
+          
           var endPercentage=0
           var leastEndDate =EndDateArr[i];
+  
            modifiedArray.forEach((cal)=>{
             var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
-            if(new Date(<any>edate).toLocaleDateString()==new Date(leastEndDate).toLocaleDateString())
-            fDateArr.push(cal)
+            var sdate=new Date(new Date(cal.StartDate).toLocaleDateString()+" 00:00");
           });
-          fDateArr.map((b)=>b.Percentage?endPercentage+=parseInt(b.Percentage):endPercentage+=0);
-          if(endPercentage<100){
-
-            // var nextDay = new Date(leastEndDate);
-            // nextDay.setDate(nextDay.getDate() + 1);
-            // NextAvailDate = nextDay.toLocaleDateString();
-            EndPercentage = endPercentage;
-            NextAvailDate = new Date(leastEndDate).toLocaleDateString();
-
-            // $('.todayAvail').html(`<label>Next available on :${new Date(leastEndDate).toLocaleDateString()}(${100-endPercentage}% Available)</label>`);
-            break;
-          }
-          else if(i==EndDateArr.length-1)
-          {
-            var tomorrow = new Date(leastEndDate);
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            NextAvailDate = tomorrow.toLocaleDateString();
-            // $('.todayAvail').html(`<label>Next available on :${tomorrow.toLocaleDateString()}(${100}% Available)</label>`);
-            break;
-          }
+  
         }
   
+        modifiedArray.forEach((cal)=>{
+          var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
+          var sdate=new Date(new Date(cal.StartDate).toLocaleDateString()+" 00:00");
+  
+          var Avainewday=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
+          Avainewday.setDate(Avainewday.getDate() + 1);
+          NextArr.push(Avainewday);
+          StartArr.push(sdate);
+          EndArr.push(edate);
+  
+        });
+        var checkFlag = false;
+            for(var k=0;k<NextArr.length;k++){
+              checkFlag = false;
+              for(var j=0;j<StartArr.length;j++){
+              if(StartArr[j]<=NextArr[k] && NextArr[k]&&NextArr[k]<=EndArr[j]){
+                //console.log(availArr);
+                checkFlag=true;
+              }
+              else{
+                  checkFlag=false;
+                  if(availArr.indexOf(NextArr[k])<0)
+                  availArr.push(NextArr[k]);
+                
+              }
+              if(checkFlag)
+              {
+                if(availArr.indexOf(NextArr[k])>=0)
+                {
+                  availArr.splice(availArr.indexOf(NextArr[k]),1)
+                  break;
+                }
+                else
+                {
+                  break;
+                }
+              }          
+              }
+            }
+                    //console.log(availArr);
+            availArr= availArr.sort(sortFunction);
+  
+            availArr = availArr.reduce(function (item, e1) {  
+              var matches = item.filter(function (e2)  
+              { return e1 == e2});  
+              if (matches.length == 0) {  
+                  item.push(e1);  
+              }  
+              return item;  
+          }, []);  
+          //console.log("availArr");
+          //console.log(availArr);
+  
+          for(var i=0;i<availArr.length;i++){
+
+            if(new Date(availArr[0]).getDay()==0)
+            {
+              var Avainewday=new Date(new Date(availArr[0]).toLocaleDateString()+" 00:00");
+              Avainewday.setDate(Avainewday.getDate() + 1);
+            NextAvailDate=new Date(<any>Avainewday).toLocaleDateString();
+            }
+            else if(new Date(availArr[0]).getDay()==6)
+            {
+              var Avainewday=new Date(new Date(availArr[0]).toLocaleDateString()+" 00:00");
+              Avainewday.setDate(Avainewday.getDate() + 2);
+        NextAvailDate=new Date(<any>Avainewday).toLocaleDateString();
+            }
+            else
+            {
+        NextAvailDate=new Date(availArr[0]).toLocaleDateString();
+            }
+            break;
+  
+          }
       }
       else{
-        
-        NextAvailDate = new Date().toLocaleDateString();
-        // NextAvailDate = new Date(leastEndDate).toLocaleDateString();
-        // $('.todayAvail').html(`<label>Next available on :${new Date(leastEndDate).toLocaleDateString()}</label>`)
+      NextAvailDate=new Date(leastEndDate).toLocaleDateString();
       }
-      // console.log(NextAvailDate);
+  
+
+
       UserDetails.push({
           
           /*Name: li.User.Title  ? li.User.Title : "",
@@ -4306,14 +4417,16 @@ const useravailabilityDetails = async() =>{
   //     $('.todayAvail').html(`<label>Next available on :${new Date(leastEndDate).toLocaleDateString()}</label>`)
   //   }
   // }
+  var flagnew = false;
   if(SelectedUserProfile[0].Availability!=0)
   {
     $('.NextAvail').html(" ")
-    $('.todayAvail').html(`<label>Available Now : (${SelectedUserProfile[0].Availability}% Available)</label>`)
+    $('.todayAvail').html(`<label>Available Now : (${SelectedUserProfile[0].Availability}% Available)</label>`);
+    flagnew=true;
   }
   else
   {
-    var EndDateArr =EndDateArr.sort(sortFunction);
+    EndDateArr =EndDateArr.sort(sortFunction);
     if(EndDateArr.length>0)
     {
         NextArr =[];
@@ -4321,19 +4434,6 @@ const useravailabilityDetails = async() =>{
         EndArr=[];
         availArr=[];
         WeekArr=[];
-      for(let i=0;i<EndDateArr.length; i++)
-      {
-        fDateArr =[]; 
-        
-        var endPercentage=0
-        var leastEndDate =EndDateArr[i];
-
-         modifiedArray.forEach((cal)=>{
-          var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
-          var sdate=new Date(new Date(cal.StartDate).toLocaleDateString()+" 00:00");
-        });
-
-      }
 
       modifiedArray.forEach((cal)=>{
         var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
@@ -4388,63 +4488,77 @@ const useravailabilityDetails = async() =>{
         //console.log("availArr");
         //console.log(availArr);
 
+//         for(var i=0;i<availArr.length;i++){
+
+//         if(new Date(availArr[i]).getDay()!=0 && new Date(availArr[i]).getDay()!=6)
+//         FinalArr.push(availArr[i]);
+//         else
+//         WeekArr.push(availArr[i]);
+
+// }
+
         for(var i=0;i<availArr.length;i++){
 
-        if(new Date(availArr[i]).getDay()!=0 && new Date(availArr[i]).getDay()!=6)
-        FinalArr.push(availArr[i]);
-        else
-        WeekArr.push(availArr[i]);
-
-}
-          if(FinalArr.length>0)
-        {
-          $('.todayAvail').html(`<label>Next 100% available on : ${new Date(FinalArr[0]).toLocaleDateString()}</label>`)
-          $('.NextAvail').html(" ")
-        }
-        else{
-          if(new Date(WeekArr[0]).getDay()==0)
+          if(new Date(availArr[0]).getDay()==0)
           {
-            var Avainewday=new Date(new Date(WeekArr[0]).toLocaleDateString()+" 00:00");
+            var Avainewday=new Date(new Date(availArr[0]).toLocaleDateString()+" 00:00");
             Avainewday.setDate(Avainewday.getDate() + 1);
             $('.todayAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
-            $('.NextAvail').html(" ")
+            $('.NextAvail').html(" ");
+          
           }
-          else if(new Date(WeekArr[0]).getDay()==6)
+          else if(new Date(availArr[0]).getDay()==6)
           {
-            var Avainewday=new Date(new Date(WeekArr[0]).toLocaleDateString()+" 00:00");
+            var Avainewday=new Date(new Date(availArr[0]).toLocaleDateString()+" 00:00");
             Avainewday.setDate(Avainewday.getDate() + 2);
             $('.todayAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
             $('.NextAvail').html(" ")
           }
+          else
+          {
+            $('.todayAvail').html(`<label>Next 100% available on : ${new Date(availArr[0]).toLocaleDateString()}</label>`)
+            $('.NextAvail').html(" ")
+          }
+          break;
+
         }
+      // if(FinalArr.length>0)
+      //   {
+      //     $('.todayAvail').html(`<label>Next 100% available on : ${new Date(FinalArr[0]).toLocaleDateString()}</label>`)
+      //     $('.NextAvail').html(" ")
+      //   }
+      //   else{
+      //     if(new Date(WeekArr[0]).getDay()==0)
+      //     {
+      //       var Avainewday=new Date(new Date(WeekArr[0]).toLocaleDateString()+" 00:00");
+      //       Avainewday.setDate(Avainewday.getDate() + 1);
+      //       $('.todayAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
+      //       $('.NextAvail').html(" ")
+      //     }
+      //     else if(new Date(WeekArr[0]).getDay()==6)
+      //     {
+      //       var Avainewday=new Date(new Date(WeekArr[0]).toLocaleDateString()+" 00:00");
+      //       Avainewday.setDate(Avainewday.getDate() + 2);
+      //       $('.todayAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
+      //       $('.NextAvail').html(" ")
+      //     }
+      //   }
     }
     else{
-      $('.todayAvail').html(`<label>Next available on : ${new Date(leastEndDate).toLocaleDateString()}</label>`)
+      //$('.todayAvail').html(`<label>Next available on : ${new Date(leastEndDate).toLocaleDateString()}</label>`)
     }
   }
   //NextAvail
-  if(SelectedUserProfile[0].Availability!=100 &&FinalArr.length==0 && WeekArr.length==0)
+  if(flagnew)
   {
-    var EndDateArr1 =EndDateArr.sort(sortFunction);
-    if(EndDateArr1.length>0)
+    EndDateArr =EndDateArr.sort(sortFunction);
+    if(EndDateArr.length>0)
     {
         NextArr1 =[];
         StartArr1=[];
         EndArr1=[];
         availArr1=[];
-      for(let i=0;i<EndDateArr1.length; i++)
-      {
-        fDateArr =[]; 
-        
-        var endPercentage=0
-        var leastEndDate =EndDateArr1[i];
-
-         modifiedArray.forEach((cal)=>{
-          var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
-          var sdate=new Date(new Date(cal.StartDate).toLocaleDateString()+" 00:00");
-        });
-
-      }
+        WeekArr1=[];
 
       modifiedArray.forEach((cal)=>{
         var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
@@ -4499,37 +4613,52 @@ const useravailabilityDetails = async() =>{
 
         for(var i=0;i<availArr1.length;i++){
 
-        if(new Date(availArr1[i]).getDay()!=0 && new Date(availArr1[i]).getDay()!=6)
-        FinalArr1.push(availArr1[i]);
-        else
-        WeekArr1.push(availArr1[i]);
-
-}
-          if(FinalArr1.length>0)
-        {
-          $('.NextAvail').html(`<label>Next 100% available on : ${new Date(FinalArr1[0]).toLocaleDateString()}</label>`)
-          
-        }
-        else{
-          if(new Date(WeekArr1[0]).getDay()==0)
+          if(new Date(availArr1[0]).getDay()==0)
           {
-            var Avainewday=new Date(new Date(WeekArr1[0]).toLocaleDateString()+" 00:00");
+            var Avainewday=new Date(new Date(availArr1[0]).toLocaleDateString()+" 00:00");
             Avainewday.setDate(Avainewday.getDate() + 1);
             $('.NextAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
-            
+          
           }
-          else if(new Date(WeekArr1[0]).getDay()==6)
+          else if(new Date(availArr1[0]).getDay()==6)
           {
-            var Avainewday=new Date(new Date(WeekArr1[0]).toLocaleDateString()+" 00:00");
+            var Avainewday=new Date(new Date(availArr1[0]).toLocaleDateString()+" 00:00");
             Avainewday.setDate(Avainewday.getDate() + 2);
             $('.NextAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
-            
           }
-        }
+          else
+          {
+            $('.NextAvail').html(`<label>Next 100% available on : ${new Date(availArr1[0]).toLocaleDateString()}</label>`)
+          }
+          break;
+      
+
+}
+        //   if(FinalArr1.length>0)
+        // {
+        //   $('.NextAvail').html(`<label>Next 100% available on : ${new Date(FinalArr1[0]).toLocaleDateString()}</label>`)
+          
+        // }
+        // else{
+        //   if(new Date(WeekArr1[0]).getDay()==0)
+        //   {
+        //     var Avainewday=new Date(new Date(WeekArr1[0]).toLocaleDateString()+" 00:00");
+        //     Avainewday.setDate(Avainewday.getDate() + 1);
+        //     $('.NextAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
+            
+        //   }
+        //   else if(new Date(WeekArr1[0]).getDay()==6)
+        //   {
+        //     var Avainewday=new Date(new Date(WeekArr1[0]).toLocaleDateString()+" 00:00");
+        //     Avainewday.setDate(Avainewday.getDate() + 2);
+        //     $('.NextAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
+            
+        //   }
+        // }
 
     }
     else{
-      $('.NextAvail').html(`<label>Next available on : ${new Date(leastEndDate).toLocaleDateString()}</label>`)
+      //$('.NextAvail').html(`<label>Next available on : ${new Date(leastEndDate).toLocaleDateString()}</label>`)
     }
   }
 
