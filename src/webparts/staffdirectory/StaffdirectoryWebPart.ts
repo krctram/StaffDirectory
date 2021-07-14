@@ -2118,9 +2118,11 @@ const onLoadData = async () => {
 
   ProfilePics = await sp.web.getFolderByServerRelativeUrl(`/sites/StaffDirectory/ProfilePictures`).files.select("*,listItemAllFields").expand("listItemAllFields").get();
 
-  AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*,UserName/Title,UserName/EMail,UserName/Id").orderBy('Modified', false).expand("UserName").top(5000).get();
+ //arun AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*,UserName/Title,UserName/EMail,UserName/Id").orderBy('Modified', false).expand("UserName").top(5000).get();
+  AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*").orderBy('Modified', false).top(5000).get();
 
-  await sp.web.getList(listUrl + "StaffDirectory").items.select("*","User/EMail","User/Title","User/FirstName","User/LastName","User/JobTitle","User/UserName","Assistant/EMail","Assistant/Title","User/Id","SDGOfficeDetails/Office","SDGOfficeDetails/ID").expand("User,Assistant,SDGOfficeDetails").get().then((listitem: any) => {
+  //arun await sp.web.getList(listUrl + "StaffDirectory").items.select("*","User/EMail","User/Title","User/FirstName","User/LastName","User/JobTitle","User/UserName","Assistant/EMail","Assistant/Title","User/Id","SDGOfficeDetails/Office","SDGOfficeDetails/ID").expand("User,Assistant,SDGOfficeDetails").get().then((listitem: any) => {
+  await sp.web.getList(listUrl + "StaffDirectory").items.select("*","User/EMail","User/Title","User/FirstName","User/LastName","User/JobTitle","User/UserName","User/Id","SDGOfficeDetails/Office","SDGOfficeDetails/ID").expand("User,SDGOfficeDetails").get().then((listitem: any) => {
     let tempArr = listitem.filter((l)=>l.SDGOfficeDetails != null)
         //console.log(tempArr);
       listitem.forEach((li) => {
