@@ -2242,7 +2242,19 @@ const onLoadData = async () => {
   
           var Avainewday=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
           Avainewday.setDate(Avainewday.getDate() + 1);
-          NextArr.push(Avainewday);
+          //NextArr.push(Avainewday);
+        if(new Date(Avainewday).getDay()==6)
+        {
+        Avainewday.setDate(Avainewday.getDate() + 2);
+        NextArr.push(Avainewday);
+        }
+        else if(new Date(Avainewday).getDay()==0){
+        Avainewday.setDate(Avainewday.getDate() + 1);
+        NextArr.push(Avainewday);
+        }
+        else{
+        NextArr.push(Avainewday);
+        }
           StartArr.push(sdate);
           EndArr.push(edate);
   
@@ -4462,7 +4474,19 @@ const useravailabilityDetails = async() =>{
 
         var Avainewday=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
         Avainewday.setDate(Avainewday.getDate() + 1);
+       // NextArr.push(Avainewday);
+        if(new Date(Avainewday).getDay()==6)
+        {
+        Avainewday.setDate(Avainewday.getDate() + 2);
         NextArr.push(Avainewday);
+        }
+        else if(new Date(Avainewday).getDay()==0){
+        Avainewday.setDate(Avainewday.getDate() + 1);
+        NextArr.push(Avainewday);
+        }
+        else{
+        NextArr.push(Avainewday);
+        }
         StartArr.push(sdate);
         EndArr.push(edate);
 
@@ -4587,7 +4611,18 @@ const useravailabilityDetails = async() =>{
 
         var Avainewday=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
         Avainewday.setDate(Avainewday.getDate() + 1);
+        if(new Date(Avainewday).getDay()==6)
+        {
+        Avainewday.setDate(Avainewday.getDate() + 2);
         NextArr1.push(Avainewday);
+        }
+        else if(new Date(Avainewday).getDay()==0){
+        Avainewday.setDate(Avainewday.getDate() + 1);
+        NextArr1.push(Avainewday);
+        }
+        else{
+        NextArr1.push(Avainewday);
+        }
         StartArr1.push(sdate);
         EndArr1.push(edate);
       });
@@ -5079,7 +5114,7 @@ function mandatoryforaddaction()
   }
   else if(!$("#projectPercent").val())
   {
-    alertify.error("Please enter % Time on Project");
+    alertify.error("Please enter % time");
     isAllvalueFilled=false;
     
   }
