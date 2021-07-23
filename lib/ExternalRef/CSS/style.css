@@ -795,6 +795,7 @@ li.ms-core-menu-footer {
 #UserAvailabilityTable_length {
   display: none;
 }
+
 .action-edit {
   background: url(../img/EditRedPencil.png);
   background-position: center;
@@ -1273,8 +1274,14 @@ label.switch {
   font-weight: 700;
 }
 .w100 {
-  min-width: 100px;
+  width: 200px !important;
+  word-break: break-all;
 }
+/* #UserAvailabilityTable td,
+#UserAvailabilityTable th {
+  width: 100px !important;
+  word-break: break-all;
+} */
 /* #drpStaffAssitant {
   width: 200px !important;
 }
