@@ -2458,9 +2458,9 @@ async function getTableData() {
 
   OfficeDetails.forEach((oDetail) => {
     OfficeTable += `<tr><td>${oDetail.Office}</td><td>${
-      oDetail.Phone != "null" ? oDetail.Phone.split("^").join("</br>") : ""
+      oDetail.Phone != null ? oDetail.Phone.split("^").join("</br>") : ""
     }</td><td>${
-      oDetail.Address != "null" ? oDetail.Address.split("^").join("</br>") : ""
+      oDetail.Address != null ? oDetail.Address.split("^").join("</br>") : ""
     }</td></tr>`;
   });
 
@@ -3224,8 +3224,8 @@ const UserProfileDetail = async () => {
   $(document).on("click", ".clsfileremove", function () {
     let filename = $(this).attr("filename");
     $(this).parent().remove();
-    var Urlsite=`/sites/SDGDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for live
-    //var Urlsite=`/sites/StaffDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for local
+    //var Urlsite=`/sites/SDGDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for live
+    var Urlsite=`/sites/StaffDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for local
     sp.web.getFileByServerRelativeUrl(Urlsite).recycle().then(function (data) {});
   });
 };
@@ -4220,8 +4220,8 @@ const editsubmitFunction = async () => {
     officeNumUpdate += `${nums.children[0]["value"]}^`;
   }
   });
-var FolderUrl=`/sites/SDGDirectory/BiographyDocument/${selectedUsermail}`;//for live
-//var FolderUrl=`/sites/StaffDirectory/BiographyDocument/${selectedUsermail}`;//for local
+//var FolderUrl=`/sites/SDGDirectory/BiographyDocument/${selectedUsermail}`;//for live
+var FolderUrl=`/sites/StaffDirectory/BiographyDocument/${selectedUsermail}`;//for local
   if (bioAttachArr.length > 0) {
     bioAttachArr.map((filedata) => {
       sp.web.folders
