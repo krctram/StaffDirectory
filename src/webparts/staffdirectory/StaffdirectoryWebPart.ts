@@ -2123,7 +2123,7 @@ var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
   AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*").orderBy('Modified', false).top(5000).get();
 
   //arun await sp.web.getList(listUrl + "StaffDirectory").items.select("*","User/EMail","User/Title","User/FirstName","User/LastName","User/JobTitle","User/UserName","Assistant/EMail","Assistant/Title","User/Id","SDGOfficeDetails/Office","SDGOfficeDetails/ID").expand("User,Assistant,SDGOfficeDetails").get().then((listitem: any) => {
-  await sp.web.getList(listUrl + "StaffDirectory").items.select("*","User/EMail","User/Title","User/FirstName","User/LastName","User/JobTitle","User/UserName","User/Id","SDGOfficeDetails/Office","SDGOfficeDetails/ID").expand("User,SDGOfficeDetails").get().then((listitem: any) => {
+  await sp.web.getList(listUrl + "StaffDirectory").items.select("*","User/EMail","User/Title","User/FirstName","User/LastName","User/JobTitle","User/UserName","User/Id","SDGOfficeDetails/Office","SDGOfficeDetails/ID").expand("User,SDGOfficeDetails").top(5000).get().then((listitem: any) => {
     let tempArr = listitem.filter((l)=>l.SDGOfficeDetails != null)
         //console.log(tempArr);
       listitem.forEach((li) => {
