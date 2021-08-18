@@ -2115,8 +2115,8 @@ const onLoadData = async () => {
   $(".mobNoCode,.homeNoCode,.emergencyNoCode,.officeNoCode").html(CCodeHtml);
   $("#drpTitleforEmployee,#drpTitleforOutside,#drpTitleforAffiliates,#drpTitleforAlumni,#drpTitleforAllPeople,#drpTitleforBilling").html(StaffDDHtml);
   $("#drpLocationforEmployee,#drpLocationforOutside,#drpLocationforAffiliates,#drpLocationforAlumni,#drpLocationforAllPeople").html(LocValueHtml); 
-var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
-//var profileliburl=`/sites/StaffDirectory/ProfilePictures`; //for local
+//var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
+var profileliburl=`/sites/StaffDirectory/ProfilePictures`; //for local
   ProfilePics = await sp.web.getFolderByServerRelativeUrl(profileliburl).files.select("*,listItemAllFields").expand("listItemAllFields").get();
 
  //arun AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*,UserName/Title,UserName/EMail,UserName/Id").orderBy('Modified', false).expand("UserName").top(5000).get();
@@ -2387,12 +2387,13 @@ var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
           HomeNo: li.HomeNo  ? li.HomeNo : "",
           EmergencyNo: li.EmergencyNo  ? li.EmergencyNo : "",
           OfficeNo: li.OfficeNo  ? li.OfficeNo : "",
-          ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/SDGDirectory/SiteImages/profile.png", //for live
-          //ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/StaffDirectory/SiteImages/profile.png", //for local
+          //ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/SDGDirectory/SiteImages/profile.png", //for live
+          ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/StaffDirectory/SiteImages/profile.png", //for local
           Availability:userPercentage==0?100:100-userPercentage,
           showAvailability:li.ShowAvailability?true:false,
           NextAvailDate:NextAvailDate,
-          EndPercentage:EndPercentage
+          EndPercentage:EndPercentage,
+          ListId:li.Id
         });
       });
 
@@ -2470,10 +2471,10 @@ async function getTableData() {
 
     UserDetails.forEach((avli)=>{
       // console.log(avli);
-      
+      //Arun - details.Usermail replace details.ListId in Id
       if(avli.Affiliation!="Alumni"&&avli.Affiliation!="Affiliate"&&avli.showAvailability!=false)
       {
-        AvailHtml+=`<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${avli.Usermail}><img src="${avli.ProfilePic}" width="30" height="30" />${avli.Name}</div><div class="HUserDetails">
+        AvailHtml+=`<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${avli.ListId}><img src="${avli.ProfilePic}" width="30" height="30" />${avli.Name}</div><div class="HUserDetails">
         <img src="${avli.ProfilePic}" class="userimg"/>
         <div class="user-name">${avli.Name}</div>
         <div class="user-JTitle">${avli.Usermail}</div>
@@ -2505,9 +2506,9 @@ async function getTableData() {
 
       if(details.LastName!=""){
 
-      EmpTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
+      EmpTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
 
-      <div class="usernametag-last" style="display: none" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
+      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
       
       <div class="HUserDetails">
       <img src="${details.ProfilePic}" class="userimg"/>
@@ -2537,9 +2538,9 @@ async function getTableData() {
       }
 
       else{
-        EmpTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
+        EmpTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
 
-      <div class="usernametag-last" style="display: none" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
+      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
       
       <div class="HUserDetails">
       <img src="${details.ProfilePic}" class="userimg"/>
@@ -2574,9 +2575,9 @@ async function getTableData() {
 
        if(details.LastName!=""){
      
-      OutTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
+      OutTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
       
-      <div class="usernametag-last" style="display: none" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
+      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
 
       <div class="HUserDetails">
       <img src="${details.ProfilePic}" class="userimg"/>
@@ -2609,9 +2610,9 @@ async function getTableData() {
 
      else{
      
-        OutTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
+        OutTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
         
-        <div class="usernametag-last" style="display: none" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
+        <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
   
         <div class="HUserDetails">
         <img src="${details.ProfilePic}" class="userimg"/>
@@ -2648,9 +2649,9 @@ async function getTableData() {
 
       if(details.LastName!=""){
 
-      AffTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
+      AffTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
       
-      <div class="usernametag-last" style="display: none" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
+      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
 
       </div></td><td>${
         details.FirstName
@@ -2676,9 +2677,9 @@ async function getTableData() {
       }
 
       else{
-        AffTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
+        AffTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
       
-      <div class="usernametag-last" style="display: none" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
+      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
 
       </div></td><td>${
         details.FirstName
@@ -2708,9 +2709,9 @@ async function getTableData() {
 
       if(details.LastName!=""){
 
-      AlumTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
+      AlumTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
       
-      <div class="usernametag-last" style="display: none" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
+      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
 
       </div></td><td>${
         details.FirstName
@@ -2736,9 +2737,9 @@ async function getTableData() {
       }
 
       else{
-        AlumTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
+        AlumTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
       
-        <div class="usernametag-last" style="display: none" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
+        <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
   
         </div></td><td>${
           details.FirstName
@@ -2764,16 +2765,16 @@ async function getTableData() {
       }
 
     }
-    AllDetailsTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>`
+    AllDetailsTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>`
 
     if(details.LastName!=""){
     
-      AllDetailsTable += `<div class="usernametag-last" style="display: none" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
+      AllDetailsTable += `<div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
 
     }
 
     else{
-      AllDetailsTable += `<div class="usernametag-last" style="display: none" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
+      AllDetailsTable += `<div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
 
     }
 
@@ -2819,15 +2820,15 @@ async function getTableData() {
           arrAssitant.push(details.Name);
         }
         
-        BillingRateTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>`
+        BillingRateTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>`
 
         if(details.LastName!=""){
 
-          BillingRateTable += `<div class="usernametag-last" style="display: none" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
+          BillingRateTable += `<div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
 
         }
         else{
-          BillingRateTable +=  `<div class="usernametag-last" style="display: none" id=${details.Usermail}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
+          BillingRateTable +=  `<div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
         }
         
         
@@ -3243,7 +3244,8 @@ const LoadProfile = async(e) =>{
   SelectedUser = e;
  
   SelectedUserProfile = UserDetails.filter((li) => {
-    return li.Usermail == SelectedUser;
+    //Arun return li.Usermail == SelectedUser;
+    return li.ListId == SelectedUser;
   });
   selectedUsermail = SelectedUserProfile[0].Usermail;
   $(".profile-picture").attr("src", SelectedUserProfile[0].ProfilePic);
