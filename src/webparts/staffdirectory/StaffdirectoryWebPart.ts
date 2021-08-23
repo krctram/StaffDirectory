@@ -5085,9 +5085,10 @@ const getGroups = async () =>{
                 IsgeneralStaff=true
                 else if(group.Title == "Special Access Employee")
                 IssplStaff=true;
-                //else if(group.Title == "Staff Directory Admin")//for live admin
-                else if(group.Title == "Test Admin")//for test admin
+                else if(group.Title == "Staff Directory Admin")//for live admin
                 IsAdminStaff=true
+                //else if(group.Title == "Test Admin")//for test admin
+                //IsAdminStaff=true
               });
               IsAdminStaff||IssplStaff?$('.billingRateNav').show():$('.billingRateNav').hide()
 
