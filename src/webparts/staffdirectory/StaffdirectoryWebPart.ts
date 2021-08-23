@@ -135,8 +135,8 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         <li><a href="#" class="sdhlastnamesort">By Last Name</a></li>
         <li><a href="#" class="sdhfirstnamesort">By First Name</a></li>
         <li><a href="#" class="sdhLocgrouping">By Office</a></li>
-        <li><a href="#" class="sdhTitlgrouping">By Title/Staff Function</a></li>
-        <li><a href="#" class="sdhAssistantgrouping">By Assistant</a></li>
+        <li><a href="#" class="sdhTitlgrouping">By Staff Function</a></li>
+        <!--Arun<li><a href="#" class="sdhAssistantgrouping">By Assistant</a></li>-->
         </ul>
         </div>
         </div>
@@ -153,7 +153,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         <li><a href="#" class="OutConslastnamesort">By Last Name</a></li>
         <li><a href="#" class="OutConsFirstnamesort">By First Name</a></li>
         <li><a href="#" class="OutConsLocgrouping">By Office Affiliation</a></li>
-        <li><a href="#" class="OutConsStaffgrouping">By Title/Staff Function</a></li>
+        <li><a href="#" class="OutConsStaffgrouping">By Staff Function</a></li>
         </ul>
         </div>
         </div>
@@ -229,7 +229,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         <div class="filter-section">
        <ul> 
         <li><a href="#" class="staffAvailOffice">By Office</a></li>
-        <li><a href="#" class="staffAvailStaff">By Title/Staff Function</a></li>
+        <li><a href="#" class="staffAvailStaff">By Staff Function</a></li>
         <li><a href="#" class="staffAvailAffiliation">By Staff Affiliation</a></li>
         </ul>
         </div>
@@ -246,7 +246,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         <ul>
         <li><a href="#" class="SDGBillingRateLastName">By Last Name</a></li>
         <li><a href="#" class="SDGBillingRateFirstName">By First Name</a></li>
-        <li><a href="#" class="SDGBillingRateTitle">By Title/Staff Function</a></li>
+        <li><a href="#" class="SDGBillingRateTitle">By Staff Function</a></li>
         </ul>
         </div>
         </div>
@@ -273,14 +273,14 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <select id="drpLocationforEmployee">
     <option value="Select">Select</option>
     </select>
-    <label>Title/Staff Function :</label>
+    <label>Staff Function :</label>
     <select id="drpTitleforEmployee">
     <option value="Select">Select</option>
     </select>
-    <label>Assistant:</label>
+    <!--Arun<label>Assistant:</label>
     <select id="drpAssistantforEmployee">
     <option value="Select">Select</option>
-    </select>
+    </select>-->
     </div>
     </div>
     
@@ -293,8 +293,8 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Phone Number</th>
     <th>Location</th>
     <th>Job Title</th>
-    <th>Title/Staff Function</th>
-    <th>Assistant</th>
+    <th>Staff Function</th>
+    <th style="display:none">Assistant</th>
     </tr>
     </thead>
     <tbody id="SdhEmpTbody">
@@ -308,14 +308,14 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <select id="drpLocationforOutside">
     <option value="Select">Select</option>
     </select>
-    <label>Title/Staff Function :</label>
+    <label>Staff Function :</label>
     <select id="drpTitleforOutside">
     <option value="Select">Select</option>
     </select>
-    <label>Assistant:</label>
+    <!--Arun<label>Assistant:</label>
     <select id="drpAssistantforOutside">
     <option value="Select">Select</option>
-    </select>
+    </select>-->
     </div>
     </div> 
     <table  id="SdhOutsideTable">
@@ -327,8 +327,8 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Phone Number</th>
     <th>Location</th>
     <th>Job Title</th>
-    <th>Title/Staff Function</th>
-    <th>Assistant</th>
+    <th>Staff Function</th>
+    <th style="display: none">Assistant</th>
     </tr>
     </thead>
     <tbody id="SdhOutsideTbody">
@@ -342,14 +342,14 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <select id="drpLocationforAffiliates">
     <option value="Select">Select</option>
     </select>
-    <label>Title/Staff Function :</label>
+    <label>Staff Function :</label>
     <select id="drpTitleforAffiliates">
     <option value="Select">Select</option>
     </select>
-    <label>Assistant:</label>
+    <!--Arun<label>Assistant:</label>
     <select id="drpAssistantforAffiliates">
     <option value="Select">Select</option>
-    </select>
+    </select>-->
     </div>
     </div>
 
@@ -363,8 +363,8 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Phone Number</th>
     <th>Location</th>
     <th>Job Title</th>
-    <th>Title/Staff Function</th>
-    <th>Assistant</th>
+    <th>Staff Function</th>
+    <th style="display: none">Assistant</th>
     </tr>
     </thead>
     <tbody id="SdhAffilateTbody">
@@ -378,14 +378,14 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <select id="drpLocationforAlumni">
     <option value="Select">Select</option>
     </select>
-    <label>Title/Staff Function :</label>
+    <label>Staff Function :</label>
     <select id="drpTitleforAlumni">
     <option value="Select">Select</option>
     </select>
-    <label>Assistant:</label>
+    <!--Arun<label>Assistant:</label>
     <select id="drpAssistantforAlumni">
     <option value="Select">Select</option>
-    </select>
+    </select>-->
     </div>
     </div>
 
@@ -399,8 +399,8 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Phone Number</th>
     <th>Location</th>
     <th>Job Title</th>
-    <th>Title/Staff Function</th>
-    <th>Assistant</th>
+    <th>Staff Function</th>
+    <th style="display: none">Assistant</th>
     </tr>
     </thead>
     <tbody id="SdhAllumniTbody">
@@ -414,14 +414,14 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <select id="drpLocationforAllPeople">
     <option value="Select">Select</option>
     </select>
-    <label>Title/Staff Function :</label>
+    <label>Staff Function :</label>
     <select id="drpTitleforAllPeople">
     <option value="Select">Select</option>
     </select>
-    <label>Assistant:</label>
+    <!--Arun<label>Assistant:</label>
     <select id="drpAssistantforAllPeople">
     <option value="Select">Select</option>
-    </select>
+    </select>-->
     </div>
     </div>
 
@@ -435,8 +435,8 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Phone Number</th>
     <th>Location</th>
     <th>Job Title</th>
-    <th>Title/Staff Function</th>
-    <th>Assistant</th>
+    <th>Staff Function</th>
+    <th style="display: none">Assistant</th>
     </tr>
     </thead>
     <tbody id="SdhAllPeopleTbody">
@@ -461,7 +461,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 
     <div class='FilterTable'>
     <div class="serchdiv">
-    <label>Title/Staff Function :</label>
+    <label>Staff Function :</label>
     <select id="drpTitleforBilling">
     <option value="Select">Select</option>
     </select>
@@ -472,7 +472,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <thead>
     <tr>
     <th>Name</th>
-    <th>Title/Staff Function</th>
+    <th>Staff Function</th>
     <th>Daily Rate</th>
     <th>Hourly Rate</th>
     <th>Effective Date</th>
@@ -488,7 +488,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 
     <div class='FilterTable'>
     <div class="serchdiv">
-    <label>Title/Staff Function:</label>
+    <label>Staff Function:</label>
     <select id="drpAffiliatesforBilling">
     <option value="Select">Select</option>
     </select>
@@ -503,7 +503,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 
     <table id="StaffAvailabilityTable">
     <thead>
-    <tr><th>User</th><th>Location</th><th>Title/Staff Function</th><th>Affiliation</th><th>Availability</th></tr>
+    <tr><th>User</th><th>Location</th><th>Staff Function</th><th>Affiliation</th><th>Availability</th></tr>
     </thead>
     <tbody id="StaffAvailabilityTbody"></tbody>
     </table>
@@ -575,7 +575,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
      <div class="work-address-view">
      <h4>Office Affiliation</h4>
      <div class="d-flex"><label>Location :</label><div class="address-details lblRight" id="WLoctionDetails"></div></div>
-     <div class="d-flex align-item-start"><label>Address:</label><div class="address-details lblRight" id="WAddressDetails"></div>
+     <div class="d-flex align-item-start" id="addressdiv"><label>Address:</label><div class="address-details lblRight" id="WAddressDetails"></div>
      </div>
      </div>
 
@@ -682,11 +682,11 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
      <div class="work-address">
      <h4>Office Affiliation</h4>
      <div class="address-details d-flex" id="editWorAddress">
-     <label>Location</label>
+     <label>Location:</label>
      <div class="w-100"><select id="workLocationDD"></select></div>
      </div>
      <div class="Location-Addresses d-flex">
-     <label>Location Address</label>
+     <label>Location Address:</label>
      <div class="address-details lblRight w-100" id="EditedAddressDetails">
 
      </div>
@@ -694,20 +694,20 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
      </div>
      <div class="staff-function-edit-info">
      <div class="d-flex">
-     <label>Title/Staff Function :</label>
+     <label>Staff Function:</label>
      <div class="w-100"><select id="StaffFunctionEdit"></select></div>
      </div>
      </div>
      <div class="staff-affiliates-edit-info">
      <div class="d-flex">
-     <label>Staff Affiliation</label>
+     <label>Staff Affiliation:</label>
      <div class="w-100"><select id="StaffAffiliatesEdit"></select></div>
      </div>
      </div>
      <div class="assisstant-info">
      <h4>Assisstant</h4>
      <div class="assisstant-name d-flex">
-     <label>Name</label>
+     <label>Name:</label>
      <div class="w-100"><div id="peoplepickerText" title="APickerField" style="display:none"></div>
      <!--<select id="drpStaffAssitant"></select>-->
      <input type="text" id="searchStaffAssitant" placeholder="" />
@@ -750,7 +750,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
      <div class="StaffStatus">
      <h4>Staff Status</h4>
      <div class="d-flex w-100">
-     <label>Status</label><div class="w-100"><select id="staffstatusDD"></select></div></div>
+     <label>Status:</label><div class="w-100"><select id="staffstatusDD"></select></div></div>
      <div id="workscheduleEdit">
      <div class="d-flex w-100 hide" id="workscheduleSec">
      <label>Work Schedule</label>
@@ -2115,8 +2115,8 @@ const onLoadData = async () => {
   $(".mobNoCode,.homeNoCode,.emergencyNoCode,.officeNoCode").html(CCodeHtml);
   $("#drpTitleforEmployee,#drpTitleforOutside,#drpTitleforAffiliates,#drpTitleforAlumni,#drpTitleforAllPeople,#drpTitleforBilling").html(StaffDDHtml);
   $("#drpLocationforEmployee,#drpLocationforOutside,#drpLocationforAffiliates,#drpLocationforAlumni,#drpLocationforAllPeople").html(LocValueHtml); 
-//var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
-var profileliburl=`/sites/StaffDirectory/ProfilePictures`; //for local
+var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
+//var profileliburl=`/sites/StaffDirectory/ProfilePictures`; //for local
   ProfilePics = await sp.web.getFolderByServerRelativeUrl(profileliburl).files.select("*,listItemAllFields").expand("listItemAllFields").get();
 
  //arun AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*,UserName/Title,UserName/EMail,UserName/Id").orderBy('Modified', false).expand("UserName").top(5000).get();
@@ -2387,8 +2387,8 @@ var profileliburl=`/sites/StaffDirectory/ProfilePictures`; //for local
           HomeNo: li.HomeNo  ? li.HomeNo : "",
           EmergencyNo: li.EmergencyNo  ? li.EmergencyNo : "",
           OfficeNo: li.OfficeNo  ? li.OfficeNo : "",
-          //ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/SDGDirectory/SiteImages/profile.png", //for live
-          ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/StaffDirectory/SiteImages/profile.png", //for local
+          ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/SDGDirectory/SiteImages/profile.png", //for live
+          //ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/StaffDirectory/SiteImages/profile.png", //for local
           Availability:userPercentage==0?100:100-userPercentage,
           showAvailability:li.ShowAvailability?true:false,
           NextAvailDate:NextAvailDate,
@@ -2530,7 +2530,7 @@ async function getTableData() {
           : `${details.JobTitle}`
           }</td><td>${
           details.Title
-        }</td><td>${
+        }</td><td style="display: none;">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2562,7 +2562,7 @@ async function getTableData() {
           : `${details.JobTitle}`
           }</td><td>${
           details.Title
-        }</td><td>${
+        }</td><td style="display: none">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2601,7 +2601,7 @@ async function getTableData() {
           details.Title == "" ||details.Title == null
           ? "Not Available"
           : `${details.Title}`
-          }</td><td>${
+          }</td><td style="display: none">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2636,7 +2636,7 @@ async function getTableData() {
             details.Title == "" ||details.Title == null
             ? "Not Available"
             : `${details.Title}`
-            }</td><td>${
+            }</td><td style="display: none">${
             details.Assistant == "" ||details.Assistant == null
             ? "Not Available"
             : `${details.Assistant}`
@@ -2669,7 +2669,7 @@ async function getTableData() {
           details.Title == "" ||details.Title == null
           ? "Not Available"
           : `${details.Title}`
-          }</td><td>${
+          }</td><td style="display: none">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2697,7 +2697,7 @@ async function getTableData() {
           details.Title == "" ||details.Title == null
           ? "Not Available"
           : `${details.Title}`
-          }</td><td>${
+          }</td><td style="display: none">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2729,7 +2729,7 @@ async function getTableData() {
           details.Title == "" ||details.Title == null
           ? "Not Available"
           : `${details.Title}`
-          }</td><td>${
+          }</td><td style="display: none">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2757,7 +2757,7 @@ async function getTableData() {
             details.Title == "" ||details.Title == null
             ? "Not Available"
             : `${details.Title}`
-            }</td><td>${
+            }</td><td style="display: none">${
             details.Assistant == "" ||details.Assistant == null
             ? "Not Available"
             : `${details.Assistant}`
@@ -2806,7 +2806,7 @@ async function getTableData() {
         details.Title == "" ||details.Title == null
         ? "Not Available"
         : `${details.Title}`
-        }</td><td>${
+        }</td><td style="display: none">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -3225,8 +3225,8 @@ const UserProfileDetail = async () => {
   $(document).on("click", ".clsfileremove", function () {
     let filename = $(this).attr("filename");
     $(this).parent().remove();
-    //var Urlsite=`/sites/SDGDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for live
-    var Urlsite=`/sites/StaffDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for local
+    var Urlsite=`/sites/SDGDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for live
+    //var Urlsite=`/sites/StaffDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for local
     sp.web.getFileByServerRelativeUrl(Urlsite).recycle().then(function (data) {});
   });
 };
@@ -3297,6 +3297,8 @@ const LoadProfile = async(e) =>{
 
 
   useravailabilityDetails();
+//Arun
+  IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)?$('.btn-add-project').show():$('.btn-add-project').hide()
 
             $('#linkedinIDview').html(`<a href="${SelectedUserProfile[0].LinkedInID.Url}" target ='_blank' data-interception="off"><span class="icon-linkedin"></span></a>`);
 
@@ -3333,9 +3335,17 @@ const LoadProfile = async(e) =>{
 
             if(SelectedUserProfile[0].Location)
             {
-              $("#WLoctionDetails").html(SelectedUserProfile[0].Location);
-              $("#WAddressDetails").html(OfficeAddArr.filter((add) => SelectedUserProfile[0].Location == add.OfficePlace)[0].OfficeFullAdd);
               $('.work-address-view').show();
+              $("#WLoctionDetails").html(SelectedUserProfile[0].Location);
+              //Arun
+              if(SelectedUserProfile[0].Location=="Home Office"||SelectedUserProfile[0].Location=="Not Available")
+              {
+                $('#addressdiv').hide(); 
+              }
+              else{
+              $('#addressdiv').show();
+              $("#WAddressDetails").html(OfficeAddArr.filter((add) => SelectedUserProfile[0].Location == add.OfficePlace)[0].OfficeFullAdd);
+            }
               $("#officeNoview").parent().removeClass('hide');
               $("#officeNoview").html(OfficeAddArr.filter((add) => SelectedUserProfile[0].Location == add.OfficePlace)[0].Phone);
             }
@@ -4222,8 +4232,8 @@ const editsubmitFunction = async () => {
     officeNumUpdate += `${nums.children[0]["value"]}^`;
   }
   });
-//var FolderUrl=`/sites/SDGDirectory/BiographyDocument/${selectedUsermail}`;//for live
-var FolderUrl=`/sites/StaffDirectory/BiographyDocument/${selectedUsermail}`;//for local
+var FolderUrl=`/sites/SDGDirectory/BiographyDocument/${selectedUsermail}`;//for live
+//var FolderUrl=`/sites/StaffDirectory/BiographyDocument/${selectedUsermail}`;//for local
   if (bioAttachArr.length > 0) {
     bioAttachArr.map((filedata) => {
       sp.web.folders
@@ -5075,7 +5085,8 @@ const getGroups = async () =>{
                 IsgeneralStaff=true
                 else if(group.Title == "Special Access Employee")
                 IssplStaff=true;
-                else if(group.Title == "Staff Directory Admin")
+                //else if(group.Title == "Staff Directory Admin")//for live admin
+                else if(group.Title == "Test Admin")//for test admin
                 IsAdminStaff=true
               });
               IsAdminStaff||IssplStaff?$('.billingRateNav').show():$('.billingRateNav').hide()

@@ -1003,7 +1003,7 @@ button#btnEdit {
 .FilterTable {
   padding-left: 150px;
   position: relative;
-  top: 40px;
+  top: 31px;
   margin-top: -20px;
   z-index: 10;
 }
@@ -1115,20 +1115,18 @@ button.ajs-button {
 .todayAvail {
   text-align: Center;
   position: relative;
-  top: -1rem;
 }
 .todayAvail label {
   font-weight: bold;
   color: #198754;
-  /* background: #198754; */
   padding: 0.5rem 1rem;
   position: relative;
-  top: -3rem;
+  top: -1.5rem;
 }
 .NextAvail {
   text-align: Center;
   position: relative;
-  top: -2.5rem;
+  top: 0rem;
 }
 .NextAvail label {
   font-weight: bold;
@@ -1263,7 +1261,7 @@ label.switch {
   padding-top: 6px;
 }
 .serchdiv label {
-  max-width: 7rem;
+  max-width: 10rem;
 }
 .serchdiv {
   display: flex;
