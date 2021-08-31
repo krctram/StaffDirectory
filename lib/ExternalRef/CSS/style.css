@@ -45,6 +45,8 @@
     #7d1323,
     #541220
   );
+  position: fixed;
+  height: 100vh;
 }
 .right {
   grid-column-start: 2;

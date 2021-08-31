@@ -602,7 +602,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
      <div class="address-details" id="ContactInfo">
      <div class="d-flex"><label id="homeNoviewl">Home No :</label><div id="homeNoview" class="lblRight"></div></div>
      <div class="d-flex"><label id="emergencyNoviewl">Emergency No :</label><div id="emergencyNoview" class="lblRight"></div></div>
-     <div class="d-flex"><label id="officeNoviewl">Office No :</label><div id="officeNoview" class="lblRight"></div></div>
+     <div class="d-flex"><label id="officeNoviewl">Office Phone :</label><div id="officeNoview" class="lblRight"></div></div>
      <!--<div class="d-flex"><label>Significant Other :</label><div id="PSignOther" class="lblRight"></div></div>
      <div class="d-flex"><label>Children :</label><div id="PChildren" class="lblRight"></div></div>-->
      </div>
@@ -736,7 +736,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
      <div class="d-flex"><label>Mobile No :</label><div class="w-100" id ="mobileNoSec"><div class="d-flex mobNumbers"><select class="mobNoCode"></select><input type="text" class="mobNo" id="mobileno1"/><span class="addMobNo add-icon"></span></div></div></div>
      <div class="d-flex"><label>Home No :</label><div class="w-100" id="homeNoSec"><div class="d-flex homeNumbers"><select class="homeNoCode"></select><input type="text" class="homeno" id="homeno"/><span class="addHomeNo add-icon"></span></div></div></div>
      <div class="d-flex"><label>Emergency No :</label><div class="w-100" id="emergencyNoSec"><div class="d-flex emergencyNumbers"><select class="emergencyNoCode"></select><input type="text" class="emergencyno" id="emergencyno" /><span class="addEmergencyNo add-icon"></span></div></div></div>
-     <div class="d-flex hide"><label>Office No :</label><div class="w-100" id="officeNoSec"><div class="d-flex officeNumbers"><select class="officeNoCode"></select><input type="text" class="officeno" id="officeno"/><span class="addOfficeNo add-icon"></span></div></div></div>
+     <div class="d-flex hide"><label>Office Phone :</label><div class="w-100" id="officeNoSec"><div class="d-flex officeNumbers"><select class="officeNoCode"></select><input type="text" class="officeno" id="officeno"/><span class="addOfficeNo add-icon"></span></div></div></div>
 
      <!--<div class="d-flex"><label>Significant Other :</label><div class="w-100"><textarea id="significantOther"></textarea></div></div>
      <div class="d-flex"><label>Children :</label><div class="w-100"><textarea id="children"></textarea></div></div>-->
@@ -3341,8 +3341,11 @@ const LoadProfile = async(e) =>{
               if(SelectedUserProfile[0].Location=="Home Office"||SelectedUserProfile[0].Location=="Not Available")
               {
                 $('#addressdiv').hide(); 
+                $('#officeNoviewl').hide();
               }
               else{
+              
+              $('#officeNoviewl').show();
               $('#addressdiv').show();
               $("#WAddressDetails").html(OfficeAddArr.filter((add) => SelectedUserProfile[0].Location == add.OfficePlace)[0].OfficeFullAdd);
             }
@@ -3637,7 +3640,8 @@ var USDHourly=SelectedUserProfile[0].USDDaily/8;
       var OtherCurrHourly=SelectedUserProfile[0].OtherCurrDaily/8;
       billingRateHtml += `<div class="billing-rates"><label>${SelectedUserProfile[0].OtherCurr} Daily Rate</label><div class="eur-daily-rate lblBlue" id="oDailyRate">${SelectedUserProfile[0].OtherCurrDaily}</div></div><div class="billing-rates"><label>${SelectedUserProfile[0].OtherCurr} Hourly Rate</label><div class="eur-hourly-rate lblBlue" id="oHourlyRate">${OtherCurrHourly}</div></div>`;
     }
-    if (SelectedUserProfile[0].EffectiveDate != null) 
+    //if (SelectedUserProfile[0].EffectiveDate != null) 
+    if (SelectedUserProfile[0].EffectiveDate) 
     {
       billingRateHtml += ` <div class="billing-effective-date"><label>Effective Date</label><div class="effective-date lblBlue" id="EffectiveDate">${new Date(
         SelectedUserProfile[0].EffectiveDate
