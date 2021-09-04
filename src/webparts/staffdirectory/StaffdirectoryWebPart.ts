@@ -124,8 +124,20 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <div class="left-nav">
     <div class="accordion" id="accordionExample">
     <div class="card">
-      <div class="card-header nav-items SDHEmployee show" id="headingOne">
-          <div data-toggle="collapse" class="clsToggleCollapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><span class="nav-icon sdh-emp"></span>SDG Employees</div>
+    
+    <div class="card-header nav-items SDHEmployee show" id="headingZero">
+    <div class="clsToggleCollapse" aria-expanded="false"><span class="nav-icon sdh-home"></span>SDG Directory Home</div>
+    
+</div>
+<!--<div id="collapseZero" class="clsCollapse collapse" aria-labelledby="headingZero" data-parent="#accordionExample">
+    <div class="card-body">
+    <div class="filter-section">
+    
+    </div>
+    </div>
+  </div>-->
+      <div class="card-header nav-items SDHEmployee" id="headingOne">
+          <div data-toggle="collapse" class="clsToggleCollapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><span class="nav-icon sdh-emp"></span>SDG Employees</div>
 
       </div>
       <div id="collapseOne" class="clsCollapse collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -947,7 +959,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     </div>
     </div>
     `;
-    
+    //document.querySelectorAll(".clsCollapse").forEach((btn)=>{btn.classList.remove("in")});
     $(document).ready(function() {  
       $("body").mousemove(function(event){            
           relX = event.pageX - $(this).offset().left;
@@ -1000,7 +1012,19 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     getGroups();
     ActiveSwitch();
 
+// $(".SDHEmployeeHead").click(()=>{
+//   var options = {
+//     destroy: true,
+//     order: [[0, "asc"]],
+//     language: {
+//       "emptyTable": "No data available"
+//     },
+//     lengthMenu: [50, 100],
+//   };
 
+//   bindEmpTable(options);
+//   document.querySelectorAll(".clsCollapse").forEach((btn)=>{btn.classList.remove("in")});
+// })
     $(".SDHEmployee").click(() => {
       SelectedUserProfile = [];
       $(".usernametag").show();
@@ -2405,7 +2429,7 @@ var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
   };
 const ActiveSwitch = () => {
   let navItems = document.querySelectorAll(".nav-items");
-  $('#collapseOne').addClass('in')
+  //$('#collapseOne').addClass('in')
   navItems.forEach((li) => {
     li.addEventListener("click", (e) => {
       localStorage.setItem("EName", "");
@@ -2508,15 +2532,19 @@ async function getTableData() {
 
       EmpTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
 
-      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
+      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
       
-      <div class="HUserDetails">
+      if(details.showAvailability==true){
+        EmpTable +=`<div class="HUserDetails">
       <img src="${details.ProfilePic}" class="userimg"/>
       <div class="user-name">${details.Name}</div>
       <div class="user-JTitle">${details.Usermail}</div>
       <div class="user-avail-title">Availability</div>
       <div class="user-percent">${details.Availability}%</div>
-      </div></div></td><td>${
+      </div>`
+    }
+
+    EmpTable +=`</div></td><td>${
         details.FirstName
       }</td><td>${details.LastName}</td><td>${ViewPhoneNumber.join(
         "<br>"
@@ -2540,15 +2568,19 @@ async function getTableData() {
       else{
         EmpTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
 
-      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
+      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
       
-      <div class="HUserDetails">
+      if(details.showAvailability==true){
+        EmpTable += `<div class="HUserDetails">
       <img src="${details.ProfilePic}" class="userimg"/>
       <div class="user-name">${details.Name}</div>
       <div class="user-JTitle">${details.Usermail}</div>
       <div class="user-avail-title">Availability</div>
       <div class="user-percent">${details.Availability}%</div>
-      </div></div></td><td>${
+      </div>`
+      }
+
+      EmpTable += `</div></td><td>${
         details.FirstName
       }</td><td>${details.LastName}</td><td>${ViewPhoneNumber.join(
         "<br>"
@@ -2577,15 +2609,19 @@ async function getTableData() {
      
       OutTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
       
-      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
+      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
 
-      <div class="HUserDetails">
+      if(details.showAvailability==true){
+        OutTable += `<div class="HUserDetails">
       <img src="${details.ProfilePic}" class="userimg"/>
       <div class="user-name">${details.Name}</div>
       <div class="user-JTitle">${details.Usermail}</div>
       <div class="user-avail-title">Availability</div>
       <div class="user-percent">${details.Availability}%</div>
-      </div></div></td><td>${
+      </div>`
+      }
+
+      OutTable += `</div></td><td>${
         details.FirstName
       }</td><td>${details.LastName}</td><td>${ViewPhoneNumber.join(
         "<br>"
@@ -2612,15 +2648,19 @@ async function getTableData() {
      
         OutTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
         
-        <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
+        <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
   
-        <div class="HUserDetails">
+        if(details.showAvailability==true){
+          OutTable += `<div class="HUserDetails">
         <img src="${details.ProfilePic}" class="userimg"/>
         <div class="user-name">${details.Name}</div>
         <div class="user-JTitle">${details.Usermail}</div>
         <div class="user-avail-title">Availability</div>
         <div class="user-percent">${details.Availability}%</div>
-        </div></div></td><td>${
+        </div>`
+        }
+
+        OutTable += `</div></td><td>${
           details.FirstName
         }</td><td>${details.LastName}</td><td>${ViewPhoneNumber.join(
           "<br>"
@@ -2779,7 +2819,7 @@ async function getTableData() {
     }
 
     
-    if(details.Affiliation!="Alumni"&&details.Affiliation!="Affiliate")
+    if(details.Affiliation!="Alumni"&&details.Affiliation!="Affiliate"&&details.showAvailability==true)
     {
       AllDetailsTable +=  `<div class="HUserDetails">
       <img src="${details.ProfilePic}" class="userimg"/>
@@ -2820,6 +2860,9 @@ async function getTableData() {
           arrAssitant.push(details.Name);
         }
         
+        if(details.Affiliation!="Alumni"&&details.Affiliation!="Affiliate")
+    {
+
         BillingRateTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>`
 
         if(details.LastName!=""){
@@ -2832,8 +2875,7 @@ async function getTableData() {
         }
         
         
-    if(details.Affiliation!="Alumni"&&details.Affiliation!="Affiliate")
-    {
+    
       BillingRateTable +=  `<div class="HUserDetails">
       <img src="${details.ProfilePic}" class="userimg"/>
       <div class="user-name">${details.Name}</div>
@@ -2841,7 +2883,7 @@ async function getTableData() {
       <div class="user-avail-title">Availability</div>
       <div class="user-percent">${details.Availability}%</div>
       </div>`
-    }
+    
  
     BillingRateTable +=   `</div></td><td>${
       details.Title
@@ -2876,7 +2918,9 @@ async function getTableData() {
     }</td><td>${
       !details.LastName ? "" : details.LastName
     }</td></tr>`;
+    }
   });
+  
   
   drpAss = drpArray.filter (function (value, index, array) { 
     return array.indexOf (value) == index;

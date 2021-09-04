@@ -82,6 +82,12 @@
   margin-right: 12px;
   margin-bottom: -4px;
 }
+.sdh-home {
+  background: url(../img/Home.png);
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .sdh-emp {
   background: url(../img/navuser.png);
   background-position: center;
