@@ -92,6 +92,8 @@ var onselecteduser="";
 var onselectedusermain="";
 var onselectedusersec="";
 var onselecteduserTab="";
+var OldUrl="";
+var NewUrl="";
 var relY = 0;
 var relX = 0;
 
@@ -112,6 +114,12 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     onselectedusermain= localStorage.getItem("MainSideNav");
     onselectedusersec= localStorage.getItem("secSideShow");
     onselecteduserTab= localStorage.getItem("SelectedTab");
+    OldUrl=localStorage.getItem("OldUrl");
+    NewUrl=localStorage.getItem("NewUrl");
+
+   // console.log("Old Url-WebPart:"+OldUrl);
+
+   // console.log("New Url-WebPart:"+NewUrl);
 
     var siteindex = listUrl.toLocaleLowerCase().indexOf("sites");
     listUrl = listUrl.substr(siteindex - 1) + "/Lists/";
@@ -1987,6 +1995,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
       var mainsideshow=$('.card .show').attr('id');
       var secSideShow = $('.card .show').next().attr('id');
       IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)?$('.btn-add-project').show():$('.btn-add-project').hide()
+      // IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)?$('.btn-add-project').show()&&$('#editProjectAvailability').show()&&$('#deleteProjectAvailability').show():$('.btn-add-project').hide()&&$('.action-edit').hide()&&$('.action-delete').hide()
 
 
       localStorage.setItem("EName", userName);
@@ -2007,7 +2016,8 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
       var userName=e.target.id;
       var mainsideshow=$('.card .show').attr('id');
       var secSideShow = $('.card .show').next().attr('id');
-      IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)?$('.btn-add-project').show():$('.btn-add-project').hide()
+     IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)?$('.btn-add-project').show():$('.btn-add-project').hide()
+    //  IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)?$('.btn-add-project').show()&&$('#editProjectAvailability').show()&&$('#deleteProjectAvailability').show():$('.btn-add-project').hide()&&$('.action-edit').hide()&&$('.action-delete').hide()
 
 
       localStorage.setItem("EName", userName);
@@ -2139,8 +2149,8 @@ const onLoadData = async () => {
   $(".mobNoCode,.homeNoCode,.emergencyNoCode,.officeNoCode").html(CCodeHtml);
   $("#drpTitleforEmployee,#drpTitleforOutside,#drpTitleforAffiliates,#drpTitleforAlumni,#drpTitleforAllPeople,#drpTitleforBilling").html(StaffDDHtml);
   $("#drpLocationforEmployee,#drpLocationforOutside,#drpLocationforAffiliates,#drpLocationforAlumni,#drpLocationforAllPeople").html(LocValueHtml); 
-var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
-//var profileliburl=`/sites/StaffDirectory/ProfilePictures`; //for local
+//var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
+var profileliburl=`/sites/StaffDirectory/ProfilePictures`; //for local
   ProfilePics = await sp.web.getFolderByServerRelativeUrl(profileliburl).files.select("*,listItemAllFields").expand("listItemAllFields").get();
 
  //arun AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*,UserName/Title,UserName/EMail,UserName/Id").orderBy('Modified', false).expand("UserName").top(5000).get();
@@ -2411,8 +2421,8 @@ var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
           HomeNo: li.HomeNo  ? li.HomeNo : "",
           EmergencyNo: li.EmergencyNo  ? li.EmergencyNo : "",
           OfficeNo: li.OfficeNo  ? li.OfficeNo : "",
-          ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/SDGDirectory/SiteImages/profile.png", //for live
-          //ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/StaffDirectory/SiteImages/profile.png", //for local
+          //ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/SDGDirectory/SiteImages/profile.png", //for live
+          ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/StaffDirectory/SiteImages/profile.png", //for local
           Availability:userPercentage==0?100:100-userPercentage,
           showAvailability:li.ShowAvailability?true:false,
           NextAvailDate:NextAvailDate,
@@ -3233,6 +3243,19 @@ const UserProfileDetail = async () => {
       }
       LoadProfile(onselecteduser);
     }
+    // else if(OldUrl!=NewUrl){
+    //   $("#headingZero").addClass("active");
+    //   var options = {
+    //     destroy: true,
+    //     order: [[0, "asc"]],
+    //     language: {
+    //       "emptyTable": "No data available"
+    //     },
+    //     lengthMenu: [50, 100],
+    //   };
+
+      // bindEmpTable(options);
+    //}
  
   const username = document.querySelectorAll(".usernametag");
   username.forEach((btn) => {
@@ -3269,12 +3292,12 @@ const UserProfileDetail = async () => {
   $(document).on("click", ".clsfileremove", function () {
     let filename = $(this).attr("filename");
     $(this).parent().remove();
-    var Urlsite=`/sites/SDGDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for live
-    //var Urlsite=`/sites/StaffDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for local
+    //console.logvar Urlsite=`/sites/SDGDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for live
+    var Urlsite=`/sites/StaffDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for local
     sp.web.getFileByServerRelativeUrl(Urlsite).recycle().then(function (data) {});
   });
-};
 
+}
 const LoadProfile = async(e) =>{
   const sdhEmp = document.querySelector(".sdh-employee");
   const Edit = document.querySelector("#btnEdit");
@@ -3342,7 +3365,8 @@ const LoadProfile = async(e) =>{
 
   useravailabilityDetails();
 //Arun
-  IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)?$('.btn-add-project').show():$('.btn-add-project').hide()
+ IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)?$('.btn-add-project').show():$('.btn-add-project').hide()
+  // IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)?$('.btn-add-project').show()&&$('#editProjectAvailability').show()&&$('#deleteProjectAvailability').show():$('.btn-add-project').hide()&&$('.action-edit').hide()&&$('.action-delete').hide()
 
             $('#linkedinIDview').html(`<a href="${SelectedUserProfile[0].LinkedInID.Url}" target ='_blank' data-interception="off"><span class="icon-linkedin"></span></a>`);
 
@@ -4280,8 +4304,8 @@ const editsubmitFunction = async () => {
     officeNumUpdate += `${nums.children[0]["value"]}^`;
   }
   });
-var FolderUrl=`/sites/SDGDirectory/BiographyDocument/${selectedUsermail}`;//for live
-//var FolderUrl=`/sites/StaffDirectory/BiographyDocument/${selectedUsermail}`;//for local
+//var FolderUrl=`/sites/SDGDirectory/BiographyDocument/${selectedUsermail}`;//for live
+var FolderUrl=`/sites/StaffDirectory/BiographyDocument/${selectedUsermail}`;//for local
   if (bioAttachArr.length > 0) {
     bioAttachArr.map((filedata) => {
       sp.web.folders
@@ -4407,7 +4431,8 @@ insertObj={
         Skype:$("#SkypeID").val(),
         stafffunction:$("#StaffFunctionEdit").val(),
         SDGAffiliation:$("#StaffAffiliatesEdit").val(),
-        AssistantId: profileID,
+       // AssistantId: profileID,
+       AssisstantName:$("#searchStaffAssitant").val(),
       }
     }
     const update = await sp.web
@@ -4795,8 +4820,9 @@ const useravailabilityDetails = async() =>{
           columnDefs : [
             //hide the second & fourth column
             { 'visible': true, 'targets': [5] },
+            { 'visible': true, 'targets': [6] },
             { type: 'date', 'targets': [2] },
-            { type: 'date', 'targets': [3] }
+            { type: 'date', 'targets': [3] },
           ]
         };
       }
@@ -4813,6 +4839,7 @@ const useravailabilityDetails = async() =>{
       columnDefs : [
         //hide the second & fourth column
         { 'visible': false, 'targets': [5] },
+        { 'visible': false, 'targets': [6] },
         { type: 'date', 'targets': [2] },
         { type: 'date', 'targets': [3] }
       ]
