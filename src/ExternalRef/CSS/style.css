@@ -1101,6 +1101,9 @@ button.ajs-button {
   min-height: 30px !important;
   font-size: 14px !important;
 }
+.ajs-button.ajs-ok {
+  border-radius: 0 !important;
+}
 .modal-header .modal-title {
   color: #d62d02;
   text-align: center;
