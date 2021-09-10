@@ -2149,8 +2149,8 @@ const onLoadData = async () => {
   $(".mobNoCode,.homeNoCode,.emergencyNoCode,.officeNoCode").html(CCodeHtml);
   $("#drpTitleforEmployee,#drpTitleforOutside,#drpTitleforAffiliates,#drpTitleforAlumni,#drpTitleforAllPeople,#drpTitleforBilling").html(StaffDDHtml);
   $("#drpLocationforEmployee,#drpLocationforOutside,#drpLocationforAffiliates,#drpLocationforAlumni,#drpLocationforAllPeople").html(LocValueHtml); 
-//var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
-var profileliburl=`/sites/StaffDirectory/ProfilePictures`; //for local
+var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
+//var profileliburl=`/sites/StaffDirectory/ProfilePictures`; //for local
   ProfilePics = await sp.web.getFolderByServerRelativeUrl(profileliburl).files.select("*,listItemAllFields").expand("listItemAllFields").get();
 
  //arun AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*,UserName/Title,UserName/EMail,UserName/Id").orderBy('Modified', false).expand("UserName").top(5000).get();
@@ -2421,8 +2421,8 @@ var profileliburl=`/sites/StaffDirectory/ProfilePictures`; //for local
           HomeNo: li.HomeNo  ? li.HomeNo : "",
           EmergencyNo: li.EmergencyNo  ? li.EmergencyNo : "",
           OfficeNo: li.OfficeNo  ? li.OfficeNo : "",
-          //ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/SDGDirectory/SiteImages/profile.png", //for live
-          ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/StaffDirectory/SiteImages/profile.png", //for local
+          ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/SDGDirectory/SiteImages/profile.png", //for live
+          //ProfilePic:userpic.length>0?userpic[0].ServerRelativeUrl:"/sites/StaffDirectory/SiteImages/profile.png", //for local
           Availability:userPercentage==0?100:100-userPercentage,
           showAvailability:li.ShowAvailability?true:false,
           NextAvailDate:NextAvailDate,
@@ -3292,8 +3292,8 @@ const UserProfileDetail = async () => {
   $(document).on("click", ".clsfileremove", function () {
     let filename = $(this).attr("filename");
     $(this).parent().remove();
-    //console.logvar Urlsite=`/sites/SDGDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for live
-    var Urlsite=`/sites/StaffDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for local
+    var Urlsite=`/sites/SDGDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for live
+    //var Urlsite=`/sites/StaffDirectory/BiographyDocument/${SelectedUserProfile[0].Usermail}/${filename}`;//for local
     sp.web.getFileByServerRelativeUrl(Urlsite).recycle().then(function (data) {});
   });
 
@@ -4304,8 +4304,8 @@ const editsubmitFunction = async () => {
     officeNumUpdate += `${nums.children[0]["value"]}^`;
   }
   });
-//var FolderUrl=`/sites/SDGDirectory/BiographyDocument/${selectedUsermail}`;//for live
-var FolderUrl=`/sites/StaffDirectory/BiographyDocument/${selectedUsermail}`;//for local
+var FolderUrl=`/sites/SDGDirectory/BiographyDocument/${selectedUsermail}`;//for live
+//var FolderUrl=`/sites/StaffDirectory/BiographyDocument/${selectedUsermail}`;//for local
   if (bioAttachArr.length > 0) {
     bioAttachArr.map((filedata) => {
       sp.web.folders
