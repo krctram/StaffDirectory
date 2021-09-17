@@ -1991,10 +1991,11 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     });
 
     $(document).on("click",".usernametag",(e)=>{
+      LoadProfile(e.currentTarget["id"]);
       var userName=e.target.id;
       var mainsideshow=$('.card .show').attr('id');
       var secSideShow = $('.card .show').next().attr('id');
-      IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)?$('.btn-add-project').show():$('.btn-add-project').hide()
+      IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)?$('.btn-add-project').show():$('.btn-add-project').hide();
       // IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)?$('.btn-add-project').show()&&$('#editProjectAvailability').show()&&$('#deleteProjectAvailability').show():$('.btn-add-project').hide()&&$('.action-edit').hide()&&$('.action-delete').hide()
 
 
@@ -2013,6 +2014,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     });
 
     $(document).on("click",".usernametag-last",(e)=>{
+      LoadProfile(e.currentTarget["id"]);
       var userName=e.target.id;
       var mainsideshow=$('.card .show').attr('id');
       var secSideShow = $('.card .show').next().attr('id');
@@ -2065,8 +2067,9 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 const onLoadData = async () => {
   $(".loader-section").show();
   let LocOptionHtml = "";
-  let LocDDHtml ="<option value='Select'>Select</option>"
-  let LocValueHtml ="<option value='Select'>Select</option>"
+  //let LocDDHtml ="<option value='Select'>Select</option>"
+  let LocValueHtml1 ="<option value='Select'>Select</option>"
+  let LocValueHtml2 ="<option value='Select'>Select</option>"
   let staffOptionHtml = "";
   let otherCurrHtml = "";
   let StaffFunHtml = "<option value='Select'>Select</option>";
@@ -2076,6 +2079,9 @@ const onLoadData = async () => {
   let AvailPracAreaDD = "<option value='Select'>Select</option>";
 
   let listLocation  = await sp.web.getList(listUrl + "SDGOfficeInfo").items.get(); 
+
+  let withoutAlumini = listLocation.filter((li)=>li.AlumniOffice == false);
+
   //let listLocation = await sp.web.getList(listUrl + "StaffDirectory").fields.filter("EntityPropertyName eq 'SDGOffice'").get();
 
   let listStaffStatus = await sp.web.getList(listUrl + "StaffDirectory").fields.filter("EntityPropertyName eq 'StaffStatus'").get();
@@ -2107,11 +2113,14 @@ const onLoadData = async () => {
   //   LocOptionHtml += `<option value="${li}">${li}</option>`;
   //   LocDDHtml +=`<option value="${li}">${li}</option>`;
   // });
+
   listLocation.forEach((li) => {
-      // LocOptionHtml += `<option value="${li.ID}">${li.Office}</option>`;
-      LocDDHtml +=`<option value="${li.ID}">${li.Office}</option>`;
-      LocValueHtml += `<option value="${li.Office}">${li.Office}</option>`;
-    });
+    LocValueHtml1 += `<option value="${li.Office}">${li.Office}</option>`;
+  });
+  
+  withoutAlumini.forEach((li) => {
+    LocValueHtml2 += `<option value="${li.Office}">${li.Office}</option>`;
+  });
 
 //Status-Load
   listStaffStatus[0]["Choices"].forEach((stff) => {
@@ -2148,7 +2157,9 @@ const onLoadData = async () => {
   $("#StaffAffiliatesEdit,#drpStaffforBilling").html(StaffAffHtml);
   $(".mobNoCode,.homeNoCode,.emergencyNoCode,.officeNoCode").html(CCodeHtml);
   $("#drpTitleforEmployee,#drpTitleforOutside,#drpTitleforAffiliates,#drpTitleforAlumni,#drpTitleforAllPeople,#drpTitleforBilling").html(StaffDDHtml);
-  $("#drpLocationforEmployee,#drpLocationforOutside,#drpLocationforAffiliates,#drpLocationforAlumni,#drpLocationforAllPeople").html(LocValueHtml); 
+//  $("#drpLocationforEmployee,#drpLocationforOutside,#drpLocationforAffiliates,#drpLocationforAlumni,#drpLocationforAllPeople").html(LocValueHtml); 
+$("#drpLocationforAlumni,#drpLocationforAllPeople").html(LocValueHtml1);
+$("#drpLocationforEmployee,#drpLocationforOutside,#drpLocationforAffiliates").html(LocValueHtml2);
 var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
 //var profileliburl=`/sites/StaffDirectory/ProfilePictures`; //for local
   ProfilePics = await sp.web.getFolderByServerRelativeUrl(profileliburl).files.select("*,listItemAllFields").expand("listItemAllFields").get();
@@ -2503,9 +2514,11 @@ async function getTableData() {
 
 //Availablity Table -Load 
 
-    UserDetails.forEach((avli)=>{
+    UserDetails.forEach(async (avli)=>{
       // console.log(avli);
       //Arun - details.Usermail replace details.ListId in Id
+
+
       if(avli.Affiliation!="Alumni"&&avli.Affiliation!="Affiliate"&&avli.showAvailability!=false)
       {
         AvailHtml+=`<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${avli.ListId}><img src="${avli.ProfilePic}" width="30" height="30" />${avli.Name}</div><div class="HUserDetails">
@@ -3257,22 +3270,22 @@ const UserProfileDetail = async () => {
       // bindEmpTable(options);
     //}
  
-  const username = document.querySelectorAll(".usernametag");
-  username.forEach((btn) => {
-    btn.addEventListener("click", async (e) => {
+  // const username = document.querySelectorAll(".usernametag");
+  // username.forEach((btn) => {
+  //   btn.addEventListener("click", async (e) => {
 
-      LoadProfile(e.currentTarget["id"]);
+  //     LoadProfile(e.currentTarget["id"]);
 
-    });
-  });
-  const usernamelast = document.querySelectorAll(".usernametag-last");
-  usernamelast.forEach((btn) => {
-    btn.addEventListener("click", async (e) => {
+  //   });
+  // });
+  // const usernamelast = document.querySelectorAll(".usernametag-last");
+  // usernamelast.forEach((btn) => {
+  //   btn.addEventListener("click", async (e) => {
 
-      LoadProfile(e.currentTarget["id"]);
+  //     LoadProfile(e.currentTarget["id"]);
 
-    });
-  });
+  //   });
+  // });
 
       $("#USDDailyEdit").keyup(() => {
         var usdvalue: any = $("#USDDailyEdit").val();

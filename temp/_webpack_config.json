@@ -1,0 +1,124 @@
+{
+  "module": {
+    "rules": [
+      {
+        "use": [
+          {
+            "loader": "D:\\Ram\\SPFXSolutions\\Finished Projects\\StaffDirectory\\node_modules\\@microsoft\\loader-load-themed-styles\\lib\\index.js",
+            "options": {
+              "async": true
+            }
+          },
+          {
+            "loader": "D:\\Ram\\SPFXSolutions\\Finished Projects\\StaffDirectory\\node_modules\\css-loader\\dist\\cjs.js"
+          },
+          {
+            "loader": "D:\\Ram\\SPFXSolutions\\Finished Projects\\StaffDirectory\\node_modules\\postcss-loader\\src\\index.js",
+            "options": {
+              "ident": "postcss",
+              "minimize": true,
+              "plugins": [
+                null
+              ]
+            }
+          }
+        ],
+        "test": {}
+      },
+      {
+        "use": [
+          {
+            "loader": "D:\\Ram\\SPFXSolutions\\Finished Projects\\StaffDirectory\\node_modules\\@microsoft\\loader-cased-file\\lib\\index.js",
+            "options": {
+              "name": "[name:lower]_[hash].[ext]"
+            }
+          }
+        ],
+        "test": {}
+      },
+      {
+        "use": [
+          {
+            "loader": "D:\\Ram\\SPFXSolutions\\Finished Projects\\StaffDirectory\\node_modules\\html-loader\\index.js"
+          }
+        ],
+        "test": {}
+      },
+      {
+        "test": {},
+        "enforce": "pre",
+        "use": "D:\\Ram\\SPFXSolutions\\Finished Projects\\StaffDirectory\\node_modules\\source-map-loader\\index.js",
+        "exclude": [
+          {}
+        ]
+      }
+    ],
+    "noParse": [
+      {}
+    ]
+  },
+  "resolve": {
+    "alias": {},
+    "modules": [
+      "node_modules",
+      "lib"
+    ]
+  },
+  "context": "D:\\Ram\\SPFXSolutions\\Finished Projects\\StaffDirectory",
+  "devtool": "source-map",
+  "mode": "development",
+  "entry": {
+    "staffdirectory-web-part": "D:\\Ram\\SPFXSolutions\\Finished Projects\\StaffDirectory\\lib\\webparts\\staffdirectory\\StaffdirectoryWebPart.js"
+  },
+  "externals": [
+    "@microsoft/sp-lodash-subset",
+    "@microsoft/sp-core-library",
+    "@microsoft/sp-office-ui-fabric-core",
+    "@microsoft/decorators",
+    "@microsoft/office-ui-fabric-react-bundle",
+    "@microsoft/sp-diagnostics",
+    "@microsoft/sp-dynamic-data",
+    "@microsoft/sp-polyfills",
+    "@microsoft/sp-http",
+    "@microsoft/sp-page-context",
+    "@microsoft/sp-loader",
+    "@microsoft/sp-component-base",
+    "@microsoft/sp-property-pane",
+    "@microsoft/sp-webpart-base",
+    "staffdirectory",
+    "react",
+    "react-dom",
+    "StaffdirectoryWebPartStrings"
+  ],
+  "output": {
+    "hashFunction": "md5",
+    "chunkFilename": "chunk.[name]_[contenthash].js",
+    "filename": "[name].js",
+    "library": "b1d4d37b-8176-4e20-8b5d-dd8f6821cbae_0.0.1",
+    "libraryTarget": "amd",
+    "path": "D:\\Ram\\SPFXSolutions\\Finished Projects\\StaffDirectory\\dist",
+    "devtoolModuleFilenameTemplate": "webpack:///../[resource-path]",
+    "devtoolFallbackModuleFilenameTemplate": "webpack:///../[resource-path]?[hash]"
+  },
+  "optimization": {
+    "moduleIds": "hashed"
+  },
+  "plugins": [
+    {
+      "options": {
+        "scriptName": {
+          "name": "\\/[name](_[a-z0-9-]+)*\\\\.js",
+          "isTokenized": true
+        }
+      }
+    },
+    {
+      "definitions": {
+        "process.env.NODE_ENV": "\"dev\"",
+        "DEBUG": true,
+        "DEPRECATED_UNIT_TEST": false,
+        "DATACENTER": true
+      }
+    }
+  ]
+}
