@@ -45,8 +45,8 @@
     #7d1323,
     #541220
   );
-  position: fixed;
-  height: 100vh;
+  /* position: fixed;
+  height: 100vh; */
 }
 .right {
   grid-column-start: 2;
@@ -55,7 +55,8 @@
   overflow-y: auto;
 }
 .grid-section {
-  min-height: 100vh;
+  height: 72vh;
+  /* min-height: 100vh; */
   display: grid;
   grid-template-columns: 250px auto;
 }
@@ -223,28 +224,28 @@ a.paginate_button.current {
 #SdhEmployeeDetails td:nth-child(2),
 #SdhEmployeeDetails th:nth-child(3),
 #SdhEmployeeDetails td:nth-child(3),
-#SdhEmployeeDetails th:nth-child(6),
-#SdhEmployeeDetails td:nth-child(6) {
+#SdhEmployeeDetails th:nth-child(7),
+#SdhEmployeeDetails td:nth-child(7) {
   display: none;
 }
 #SdgofficeinfoTable th:nth-child(2),
 #SdgofficeinfoTable td:nth-child(2),
 #SdgofficeinfoTable th:nth-child(3),
 #SdgofficeinfoTable td:nth-child(3),
-#SdgofficeinfoTable th:nth-child(6),
-#SdgofficeinfoTable td:nth-child(6),
+#SdgofficeinfoTable th:nth-child(7),
+#SdgofficeinfoTable td:nth-child(7),
 #SdgBillingrateTable th:nth-child(2),
 #SdgBillingrateTable td:nth-child(2),
 #SdgBillingrateTable th:nth-child(3),
 #SdgBillingrateTable td:nth-child(3),
-#SdgBillingrateTable th:nth-child(6),
-#SdgBillingrateTable td:nth-child(6),
+#SdgBillingrateTable th:nth-child(7),
+#SdgBillingrateTable td:nth-child(7),
 /* #StaffAvailabilityTable th:nth-child(2),
 #StaffAvailabilityTable td:nth-child(2), */
 #StaffAvailabilityTable th:nth-child(3),
 #StaffAvailabilityTable td:nth-child(3),
-#StaffAvailabilityTable th:nth-child(6),
-#StaffAvailabilityTable td:nth-child(6) {
+#StaffAvailabilityTable th:nth-child(7),
+#StaffAvailabilityTable td:nth-child(7) {
   display: table-cell;
 }
 tr.dtrg-group.dtrg-start td {
@@ -1279,7 +1280,7 @@ label.switch {
   align-items: center;
 }
 .nextAvailDate {
-  min-width: 12rem;
+  min-width: 13rem;
   font-weight: 700;
 }
 .w100 {
