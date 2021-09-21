@@ -293,11 +293,11 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <select id="drpLocationforEmployee">
     <option value="Select">Select</option>
     </select>
-    <label>Staff Function :</label>
+    <!--Arun<label>Staff Function :</label>
     <select id="drpTitleforEmployee">
     <option value="Select">Select</option>
     </select>
-    <!--Arun<label>Assistant:</label>
+    <label>Assistant:</label>
     <select id="drpAssistantforEmployee">
     <option value="Select">Select</option>
     </select>-->
@@ -312,7 +312,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Last Name</th>
     <th>Phone Number</th>
     <th>Location</th>
-    <th>Job Title</th>
+    <th>Title</th>
     <th>Staff Function</th>
     <th style="display:none">Assistant</th>
     </tr>
@@ -328,11 +328,11 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <select id="drpLocationforOutside">
     <option value="Select">Select</option>
     </select>
-    <label>Staff Function :</label>
+    <!--Arun<label>Staff Function :</label>
     <select id="drpTitleforOutside">
     <option value="Select">Select</option>
     </select>
-    <!--Arun<label>Assistant:</label>
+    <label>Assistant:</label>
     <select id="drpAssistantforOutside">
     <option value="Select">Select</option>
     </select>-->
@@ -346,7 +346,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Last Name</th>
     <th>Phone Number</th>
     <th>Location</th>
-    <th>Job Title</th>
+    <th>Title</th>
     <th>Staff Function</th>
     <th style="display: none">Assistant</th>
     </tr>
@@ -362,11 +362,11 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <select id="drpLocationforAffiliates">
     <option value="Select">Select</option>
     </select>
-    <label>Staff Function :</label>
+    <!--Arun<label>Staff Function :</label>
     <select id="drpTitleforAffiliates">
     <option value="Select">Select</option>
     </select>
-    <!--Arun<label>Assistant:</label>
+    <label>Assistant:</label>
     <select id="drpAssistantforAffiliates">
     <option value="Select">Select</option>
     </select>-->
@@ -382,7 +382,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Last Name</th>
     <th>Phone Number</th>
     <th>Location</th>
-    <th>Job Title</th>
+    <th>Title</th>
     <th>Staff Function</th>
     <th style="display: none">Assistant</th>
     </tr>
@@ -398,11 +398,11 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <select id="drpLocationforAlumni">
     <option value="Select">Select</option>
     </select>
-    <label>Staff Function :</label>
+    <!--Arun<label>Staff Function :</label>
     <select id="drpTitleforAlumni">
     <option value="Select">Select</option>
     </select>
-    <!--Arun<label>Assistant:</label>
+    <label>Assistant:</label>
     <select id="drpAssistantforAlumni">
     <option value="Select">Select</option>
     </select>-->
@@ -418,7 +418,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Last Name</th>
     <th>Phone Number</th>
     <th>Location</th>
-    <th>Job Title</th>
+    <th>Title</th>
     <th>Staff Function</th>
     <th style="display: none">Assistant</th>
     </tr>
@@ -434,11 +434,11 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <select id="drpLocationforAllPeople">
     <option value="Select">Select</option>
     </select>
-    <label>Staff Function :</label>
+    <!--Arun<label>Staff Function :</label>
     <select id="drpTitleforAllPeople">
     <option value="Select">Select</option>
     </select>
-    <!--Arun<label>Assistant:</label>
+    <label>Assistant:</label>
     <select id="drpAssistantforAllPeople">
     <option value="Select">Select</option>
     </select>-->
@@ -454,7 +454,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Last Name</th>
     <th>Phone Number</th>
     <th>Location</th>
-    <th>Job Title</th>
+    <th>Title</th>
     <th>Staff Function</th>
     <th style="display: none">Assistant</th>
     </tr>
@@ -479,14 +479,14 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     </div>
     <div class="sdgbillingrateTable oDataTable hide">
 
-    <div class='FilterTable'>
+    <!--Arun<div class='FilterTable'>
     <div class="serchdiv">
     <label>Staff Function :</label>
     <select id="drpTitleforBilling">
     <option value="Select">Select</option>
     </select>
     </div>
-    </div>
+    </div>-->
 
     <table  id="SdgBillingrateTable">
     <thead>
@@ -508,10 +508,10 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 
     <div class='FilterTable'>
     <div class="serchdiv">
-    <label>Staff Function:</label>
+    <!--Arun<label>Staff Function :</label>
     <select id="drpAffiliatesforBilling">
     <option value="Select">Select</option>
-    </select>
+    </select>-->
 
     <label>Staff Affiliation:</label>
     <select id="drpStaffforBilling">
@@ -523,7 +523,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 
     <table id="StaffAvailabilityTable">
     <thead>
-    <tr><th>User</th><th>Location</th><th>Staff Function</th><th>Affiliation</th><th>Availability</th></tr>
+    <tr><th>Name</th><th>Location</th><th>Staff Function</th><th>Affiliation</th><th>Availability</th></tr>
     </thead>
     <tbody id="StaffAvailabilityTbody"></tbody>
     </table>
@@ -562,7 +562,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <div class="title-font" id="user-staff-function"></div>
     </div>
     <div class="user-info">
-    <label>Job Title :</label>
+    <label>Title :</label>
     <div class="title-font" id="user-staff-title"></div>
     </div>
     </div>
@@ -714,7 +714,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
      </div>
      <div class="staff-function-edit-info">
      <div class="d-flex">
-     <label>Staff Function:</label>
+     <label>Title:</label>
      <div class="w-100"><select id="StaffFunctionEdit"></select></div>
      </div>
      </div>
@@ -2500,14 +2500,16 @@ async function getTableData() {
   let drpArray=[];
   let drpAss=[];
   let arrAssitant=[];
-   OfficeDetails = await sp.web.getList(listUrl + "SDGOfficeInfo").items.get(); 
+   OfficeDetails = await sp.web.getList(listUrl + "SDGOfficeInfo").items.filter("AlumniOffice eq '"+false+"'").get(); 
 
   OfficeDetails.forEach((oDetail) => {
+if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
     OfficeTable += `<tr><td>${oDetail.Office}</td><td>${
       oDetail.Phone != null ? oDetail.Phone.split("^").join("</br>") : ""
     }</td><td>${
       oDetail.Address != null ? oDetail.Address.split("^").join("</br>") : ""
     }</td></tr>`;
+  }
   });
 
 
