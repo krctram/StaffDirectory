@@ -220,6 +220,16 @@ a.paginate_button.current {
 .filter-section ul li a {
   color: #fff;
 }
+#StaffAvailabilityTable td:nth-child(6),
+#StaffAvailabilityTable th:nth-child(6) {
+  display: none !important;
+}
+
+#SdgBillingrateTable td:nth-child(6),
+#SdgBillingrateTable th:nth-child(6) {
+  display: none !important;
+}
+
 #SdhEmployeeDetails th:nth-child(2),
 #SdhEmployeeDetails td:nth-child(2),
 #SdhEmployeeDetails th:nth-child(3),
@@ -228,6 +238,7 @@ a.paginate_button.current {
 #SdhEmployeeDetails td:nth-child(7) {
   display: none;
 }
+
 #SdgofficeinfoTable th:nth-child(2),
 #SdgofficeinfoTable td:nth-child(2),
 #SdgofficeinfoTable th:nth-child(3),

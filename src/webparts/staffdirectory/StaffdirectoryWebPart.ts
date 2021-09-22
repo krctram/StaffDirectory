@@ -492,12 +492,13 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <thead>
     <tr>
     <th>Name</th>
-    <th>Staff Function</th>
+    <th>Title</th>
     <th>Daily Rate</th>
     <th>Hourly Rate</th>
     <th>Effective Date</th>
     <th>First Name</th>
     <th>Last Name</th>
+    <th>Staff Function</th>
     </tr>
     </thead>
     <tbody id="SdgBillingrateTbody">
@@ -523,7 +524,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 
     <table id="StaffAvailabilityTable">
     <thead>
-    <tr><th>Name</th><th>Location</th><th>Staff Function</th><th>Affiliation</th><th>Availability</th></tr>
+    <tr><th>Name</th><th>Staff Function</th><th>Title</th><th>Affiliation</th><th>Availability</th><th>Location</th></tr>
     </thead>
     <tbody id="StaffAvailabilityTbody"></tbody>
     </table>
@@ -1652,7 +1653,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         }
       var options = {
         destroy: true,
-        order: [[1, "asc"]],
+        order: [[5, "asc"]],
         language: {
           "emptyTable": "No data available"
         },
@@ -1780,7 +1781,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         tableSection.classList.remove("hide");
         userpage.classList.add("hide");
       }
-      SdhEmpTableRowGrouping(1,"StaffAvailabilityTable",bindStaffAvailTable);
+      SdhEmpTableRowGrouping(5,"StaffAvailabilityTable",bindStaffAvailTable);
     });
 
     $(".staffAvailStaff").click(() => {
@@ -1796,7 +1797,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         tableSection.classList.remove("hide");
         userpage.classList.add("hide");
       }
-      SdhEmpTableRowGrouping(2 ,"StaffAvailabilityTable",bindStaffAvailTable);
+      SdhEmpTableRowGrouping(1 ,"StaffAvailabilityTable",bindStaffAvailTable);
     });
 
     $(".staffAvailAffiliation").click(()=>{
@@ -2530,8 +2531,8 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
         <div class="user-avail-title">Availability</div>
         <div class="user-percent">${avli.Availability}%</div>
         </div></div></td>
-        <td>${avli.Location}</td>
         <td>${avli.Title}</td>
+        <td>${avli.JobTitle}</td>
         <td>${avli.Affiliation}</td>
         <td> 
         <div class="d-flex align-item-center  availabilityProgress">
@@ -2542,7 +2543,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
         <div class="progress-value" style="height:100%;width:${100 - avli.Availability}%; background: ${avli.Availability <= 50? "#45b345":"#45b345"}"></div>
         </div>
         <span style="color:${avli.Availability <= 50? "#000000":"#000000"}">${avli.Availability}%</span></div>
-        </td></tr>`
+        </td><td>${avli.Location}</td></tr>`
       }
 
     })
@@ -2911,8 +2912,9 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
     
  
     BillingRateTable +=   `</div></td><td>${
-      details.Title
-    }</td><td><div>${
+      details.JobTitle
+    }</td>
+    <td><div>${
       details.USDDaily == "" || details.USDDaily == null
         ? ""
         : `USD: ${details.USDDaily}`
@@ -2942,6 +2944,8 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
       !details.FirstName ? "" : details.FirstName
     }</td><td>${
       !details.LastName ? "" : details.LastName
+    }</td><td>${
+      details.Title
     }</td></tr>`;
     }
   });
