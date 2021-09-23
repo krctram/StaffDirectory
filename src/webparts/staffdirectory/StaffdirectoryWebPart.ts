@@ -715,7 +715,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
      </div>
      <div class="staff-function-edit-info">
      <div class="d-flex">
-     <label>Title:</label>
+     <label>Staff Function :</label>
      <div class="w-100"><select id="StaffFunctionEdit"></select></div>
      </div>
      </div>
