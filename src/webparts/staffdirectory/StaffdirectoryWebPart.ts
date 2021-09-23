@@ -2901,7 +2901,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
         }
         
         
-    
+        if(details.showAvailability==true){
       BillingRateTable +=  `<div class="HUserDetails">
       <img src="${details.ProfilePic}" class="userimg"/>
       <div class="user-name">${details.Name}</div>
@@ -2909,7 +2909,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
       <div class="user-avail-title">Availability</div>
       <div class="user-percent">${details.Availability}%</div>
       </div>`
-    
+        }
  
     BillingRateTable +=   `</div></td><td>${
       details.JobTitle
