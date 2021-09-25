@@ -1992,6 +1992,11 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     });
 
     $(document).on("click",".usernametag",(e)=>{
+
+      $('.right').animate({
+        scrollTop: 0
+       });
+
       LoadProfile(e.currentTarget["id"]);
       var userName=e.target.id;
       var mainsideshow=$('.card .show').attr('id');
@@ -2015,6 +2020,11 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     });
 
     $(document).on("click",".usernametag-last",(e)=>{
+
+      $('.right').animate({
+        scrollTop: 0
+       });
+
       LoadProfile(e.currentTarget["id"]);
       var userName=e.target.id;
       var mainsideshow=$('.card .show').attr('id');
@@ -3005,11 +3015,16 @@ $("#drpAssistantforEmployee").html(htmlForAssitant);
   bindAllDetailTable(options);
   bindOfficeTable(options);
   bindBillingRateTable(options);
-  SdhEmpTableRowGrouping(1,"StaffAvailabilityTable",bindStaffAvailTable);
+  SdhEmpTableRowGrouping(3,"StaffAvailabilityTable",bindStaffAvailTable);
   UserProfileDetail();
 
 }
 const bindEmpTable = (options) => {
+
+  $('.right').animate({
+    scrollTop: 0
+   });
+
   let EMPTable = (<any>$("#SdhEmpTable")).DataTable(options);
 
   $("#drpLocationforEmployee").change(function () {
@@ -3040,6 +3055,11 @@ const bindEmpTable = (options) => {
 
 };
 const bindOutTable = (options) => {
+
+  $('.right').animate({
+    scrollTop: 0
+   });
+
   let OutTable =(<any>$("#SdhOutsideTable")).DataTable(options);
   $("#drpLocationforOutside").change(function () {
     if ($("#drpLocationforOutside").val()=="Select") {
@@ -3064,6 +3084,11 @@ const bindOutTable = (options) => {
   });
 };
 const bindAffTable = (options) => {
+
+  $('.right').animate({
+    scrollTop: 0
+   });
+
   let AffTable=(<any>$("#SdhAffilateTable")).DataTable(options);
   $("#drpLocationforAffiliates").change(function () {
     if ($("#drpLocationforAffiliates").val()=="Select") {
@@ -3088,6 +3113,11 @@ const bindAffTable = (options) => {
   });
 };
 const bindAlumTable = (options) => {
+
+  $('.right').animate({
+    scrollTop: 0
+   });
+
   let AlumTable= (<any>$("#SdhAllumniTable")).DataTable(options);
   $("#drpLocationforAlumni").change(function () {
     if ($("#drpLocationforAlumni").val()=="Select") {
@@ -3112,6 +3142,11 @@ const bindAlumTable = (options) => {
   });
 };
 const bindAllDetailTable = (options) => {
+
+  $('.right').animate({
+    scrollTop: 0
+   });
+
   let AllDetailTable=(<any>$("#SdhAllPeopleTable")).DataTable(options);
   $("#drpLocationforAllPeople").change(function () {
     if ($("#drpLocationforAllPeople").val()=="Select") {
@@ -3136,10 +3171,18 @@ const bindAllDetailTable = (options) => {
   });
 };
 const bindOfficeTable = (option) => {
+
+  $('.right').animate({
+    scrollTop: 0
+   });
   (<any>$("#SdgofficeinfoTable")).DataTable(option);
 
 };
 const bindBillingRateTable = (option) => {
+
+  $('.right').animate({
+    scrollTop: 0
+   });
 
  let BillingLoadTable= (<any>$("#SdgBillingrateTable")).DataTable(option);
  $("#drpTitleforBilling").change(function () {
@@ -3152,6 +3195,11 @@ const bindBillingRateTable = (option) => {
 };
 
 const bindStaffAvailTable = (option) =>{
+
+  $('.right').animate({
+    scrollTop: 0
+   });
+
 let staffAvailTable=  (<any>$('#StaffAvailabilityTable')).DataTable(option);
   $("#drpAffiliatesforBilling").change(function () {
     if ($("#drpAffiliatesforBilling").val()=="Select") {
@@ -3747,6 +3795,7 @@ var USDHourly=SelectedUserProfile[0].USDDaily/8;
 
     if(SelectedUserProfile[0].ShortBio) {
       $('#shortbioh').show();
+      $('#shortbio').show();
       $('#shortbio').html(SelectedUserProfile[0].ShortBio)
     }
     else{
