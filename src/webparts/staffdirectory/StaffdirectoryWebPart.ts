@@ -3456,7 +3456,7 @@ const LoadProfile = async(e) =>{
 
             if(SelectedUserProfile[0].Skype)
             {
-              $("#UserSkypeID").html(`<a href="skype:${SelectedUserProfile[0].Skype}?chat" target ='_blank' data-interception="off"><span class="user-skype-icon"></span><p>Skype</p></a>`);
+              $("#UserSkypeID").html(`<a href="skype:${SelectedUserProfile[0].Skype}?chat" target ='_blank' data-interception="off"><span class="user-skype-icon"></span><p>${SelectedUserProfile[0].Skype}</p></a>`);
               $("#UserSkypeID").show();
             }
             else
