@@ -507,12 +507,12 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     </div>
     <div class="StaffAvailabilityTable oDataTable hide">
 
-    <div class='FilterTable'>
+    <!--Arun<div class='FilterTable'>
     <div class="serchdiv">
-    <!--Arun<label>Staff Function :</label>
+    <label>Staff Function :</label>
     <select id="drpAffiliatesforBilling">
     <option value="Select">Select</option>
-    </select>-->
+    </select>
 
     <label>Staff Affiliation:</label>
     <select id="drpStaffforBilling">
@@ -520,7 +520,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     </select>
 
     </div>
-    </div>
+    </div>-->
 
     <table id="StaffAvailabilityTable">
     <thead>
@@ -1599,15 +1599,16 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         tableSection.classList.remove("hide");
         userpage.classList.add("hide");
         }
-      var options = {
-        destroy: true,
-        order: [[0, "asc"]],
-        language: {
-          "emptyTable": "No data available"
-        },
-        lengthMenu: [50, 100],
-      };
-      bindAllDetailTable(options);
+      // var options = {
+      //   destroy: true,
+      //   order: [[3, "asc"]],
+      //   language: {
+      //     "emptyTable": "No data available"
+      //   },
+      //   lengthMenu: [50, 100],
+      // };
+      // bindAllDetailTable(options);
+      SdhEmpTableRowGrouping(3 ,"StaffAvailabilityTable",bindStaffAvailTable);
     });
 
     $(".SDGBillingRate").click(() => {
@@ -2176,7 +2177,7 @@ var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
   ProfilePics = await sp.web.getFolderByServerRelativeUrl(profileliburl).files.select("*,listItemAllFields").expand("listItemAllFields").get();
 
  //arun AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*,UserName/Title,UserName/EMail,UserName/Id").orderBy('Modified', false).expand("UserName").top(5000).get();
-  AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*").orderBy('Modified', false).top(5000).get();
+  AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*").orderBy('EndDate', false).top(5000).get();
 
   //arun await sp.web.getList(listUrl + "StaffDirectory").items.select("*","User/EMail","User/Title","User/FirstName","User/LastName","User/JobTitle","User/UserName","Assistant/EMail","Assistant/Title","User/Id","SDGOfficeDetails/Office","SDGOfficeDetails/ID").expand("User,Assistant,SDGOfficeDetails").get().then((listitem: any) => {
   await sp.web.getList(listUrl + "StaffDirectory").items.select("*","User/EMail","User/Title","User/FirstName","User/LastName","User/JobTitle","User/UserName","User/Id","SDGOfficeDetails/Office","SDGOfficeDetails/ID").expand("User,SDGOfficeDetails").top(5000).get().then((listitem: any) => {
