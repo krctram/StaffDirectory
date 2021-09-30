@@ -2172,6 +2172,7 @@ const onLoadData = async () => {
 //  $("#drpLocationforEmployee,#drpLocationforOutside,#drpLocationforAffiliates,#drpLocationforAlumni,#drpLocationforAllPeople").html(LocValueHtml); 
 $("#drpLocationforAlumni,#drpLocationforAllPeople").html(LocValueHtml1);
 $("#drpLocationforEmployee,#drpLocationforOutside,#drpLocationforAffiliates").html(LocValueHtml2);
+$("#drpLocationforEmployee,#drpLocationfor");
 var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
 //var profileliburl=`/sites/StaffDirectory/ProfilePictures`; //for local
   ProfilePics = await sp.web.getFolderByServerRelativeUrl(profileliburl).files.select("*,listItemAllFields").expand("listItemAllFields").get();
@@ -3393,7 +3394,8 @@ const LoadProfile = async(e) =>{
     $("#availabilityTab").removeClass("hide");
   }
 
-  if((SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)||IsAdminStaff)
+ if((SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)||IsAdminStaff)
+ //if(IsAdminStaff)
   {
      Edit.classList.remove('hide');
      viewBiling.classList.remove('hide');
@@ -3403,6 +3405,10 @@ const LoadProfile = async(e) =>{
       $('.showAvail-view').show();
       SelectedUserProfile[0].showAvailability? $('#view-show-avail').text("Yes") :$('#view-show-avail').text("No")
      }
+     else if((SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)){
+        viewBiling.classList.add('hide');
+        $('.BRHead').hide();
+      }
      else
      {
       $('.showAvail-view').hide();
@@ -3411,12 +3417,22 @@ const LoadProfile = async(e) =>{
   }
   else if(IssplStaff)
   {
+    // if(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()){
+    //   Edit.classList.remove('hide');
+    // }
+    // else{
+    //  Edit.classList.add('hide');
+    // }
     Edit.classList.add('hide');
     viewBiling.classList.remove('hide');
     $('.BRHead').show();
     $('.showAvail-view').show();
     SelectedUserProfile[0].showAvailability? $('#view-show-avail').text("Yes") :$('#view-show-avail').text("No")
   }
+  // else if((SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff)){
+  //   viewBiling.classList.add('hide');
+  //   $('.BRHead').hide();
+  // }
   else{
     Edit.classList.add('hide');
     viewBiling.classList.add('hide');
@@ -3755,7 +3771,8 @@ const LoadProfile = async(e) =>{
     viewBiling.classList.add('hide');
     $('.BRHead').hide();
   }
-  else if(IssplStaff||IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff))
+  //else if(IssplStaff||IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff))
+  else if(IssplStaff||IsAdminStaff)
   {
     viewBiling.classList.remove('hide');
     $('.BRHead').show();
