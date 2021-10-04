@@ -4326,6 +4326,16 @@ var ofcAdd=[]
   $("#OHourlyEdit").val(SelectedUserProfile[0].OtherCurrDaily/8);
   $("#BillingRateCommentsEdit").val(SelectedUserProfile[0].BillingRateComments);
 
+  if(IsAdminStaff){
+    $("#workLocationDD").prop('disabled', false);
+    $("#StaffFunctionEdit").prop('disabled', false);
+    $("#StaffAffiliatesEdit").prop('disabled', false);
+  }
+  else if(IssplStaff||SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff){
+    $("#workLocationDD").prop('disabled', true);
+    $("#StaffFunctionEdit").prop('disabled', true);
+    $("#StaffAffiliatesEdit").prop('disabled', true);
+  }
   if(SelectedUserProfile[0].AssisstantName)
   {
     $("#searchStaffAssitant").val(SelectedUserProfile[0].AssisstantName);
