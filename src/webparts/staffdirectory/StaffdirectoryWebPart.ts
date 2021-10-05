@@ -145,7 +145,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     </div>
   </div>-->
       <div class="card-header nav-items SDHEmployee" id="headingOne">
-          <div data-toggle="collapse" class="clsToggleCollapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><span class="nav-icon sdh-emp"></span>SDG Employees</div>
+          <div data-toggle="collapse" class="clsToggleCollapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne"><span class="nav-icon sdh-emp"></span>Employees</div>
 
       </div>
       <div id="collapseOne" class="clsCollapse collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -164,7 +164,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     </div>
     <div class="card">
       <div class="card-header nav-items  OutsidConsultant" id="headingTwo">
-          <div data-toggle="collapse" class="clsToggleCollapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" ><span class="nav-icon out-con"></span> Outside Consultant</div>
+          <div data-toggle="collapse" class="clsToggleCollapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" ><span class="nav-icon out-con"></span> Independent Contractors</div>
       </div>
       <div id="collapseTwo" class="clsCollapse collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
         <div class="card-body">
@@ -196,7 +196,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     </div>
     <div class="card">
       <div class="card-header nav-items SDHAlumini" id="headingFour">
-        <div data-toggle="collapse" class="clsToggleCollapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"><span class="nav-icon sdh-alumini"></span>SDG Alumni</div>
+        <div data-toggle="collapse" class="clsToggleCollapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour"><span class="nav-icon sdh-alumini"></span>Alumni</div>
       </div>
       <div id="collapseFour" class="clsCollapse collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
         <div class="card-body">
@@ -204,7 +204,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         <ul>
         <li><a href="#" class="SDHAlumniLastName">By Last Name</a></li>
         <li><a href="#" class="SDHAlumniFirstName">By First Name</a></li>
-        <li><a href="#" class="SDHAlumniOffice">By SDG Office</a></li>
+        <li><a href="#" class="SDHAlumniOffice">By SDG Offices</a></li>
         </ul>
         </div>
         </div>
@@ -227,7 +227,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     </div>
     <div class="card">
       <div class="card-header nav-items SDGOfficeInfo" id="headingSix">
-          <div data-toggle="collapse" class="clsToggleCollapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix"><span class="nav-icon show-office"></span>SDG Office Info</div>
+          <div data-toggle="collapse" class="clsToggleCollapse" data-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix"><span class="nav-icon show-office"></span>SDG Offices</div>
       </div>
       <!--<div id="collapseSix" class="clsCollapse collapse" aria-labelledby="headingSix" data-parent="#accordionExample">
         <div class="card-body">
@@ -761,7 +761,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 
      <!--<div class="d-flex"><label>Significant Other :</label><div class="w-100"><textarea id="significantOther"></textarea></div></div>
      <div class="d-flex"><label>Children :</label><div class="w-100"><textarea id="children"></textarea></div></div>-->
-     <div class="d-flex"><label>LinkedIn ID :</label><div class="w-100"><input type="text" id="linkedInID"></div></div>
+     <div class="d-flex"><label>LinkedIn Profile :</label><div class="w-100"><input type="text" id="linkedInID"></div></div>
      <div class="d-flex"><label>Skype :</label><div class="w-100"><input type="text" id="SkypeID"></div></div>
      </div>
      </div>
@@ -2011,7 +2011,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
       localStorage.setItem("secSideShow", secSideShow);
       localStorage.setItem("SelectedTab", "aDirectory");
 
-      if((SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Outside Consultant")||!SelectedUserProfile[0].showAvailability){
+      if((SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractors")||!SelectedUserProfile[0].showAvailability){
         $("#menu1").addClass("hide");
         $("#availabilityTab").addClass("hide");
       }else{
@@ -2039,7 +2039,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
       localStorage.setItem("secSideShow", secSideShow);
       localStorage.setItem("SelectedTab", "aDirectory");
 
-      if((SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Outside Consultant")||!SelectedUserProfile[0].showAvailability){
+      if((SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractors")||!SelectedUserProfile[0].showAvailability){
         $("#menu1").addClass("hide");
         $("#availabilityTab").addClass("hide");
       }else{
@@ -2641,7 +2641,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
 
     }
     
-    if (details.Affiliation == "Outside Consultant") {
+    if (details.Affiliation == "Independent Contractors") {
 
        if(details.LastName!=""){
      
@@ -3386,7 +3386,7 @@ const LoadProfile = async(e) =>{
   selectedUsermail = SelectedUserProfile[0].Usermail;
   $(".profile-picture").attr("src", SelectedUserProfile[0].ProfilePic);
 
-  if((SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Outside Consultant")||!SelectedUserProfile[0].showAvailability){
+  if((SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractors")||!SelectedUserProfile[0].showAvailability){
     $("#menu1").addClass("hide");
     $("#availabilityTab").addClass("hide");
   }else{
@@ -3440,7 +3440,7 @@ const LoadProfile = async(e) =>{
     $('.showAvail-view').hide();
   }
 
-  if(SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Outside Consultant")
+  if(SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractors")
   {
     $('.showAvail-view').hide();
   }
@@ -4036,7 +4036,7 @@ const editFunction = async() => {
       $('.BRHead').hide();
       $('.show-availablity-sec').hide()
 
-     if(SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Outside Consultant")
+     if(SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractors")
      {
       $('.show-availablity-sec').hide()
      }
@@ -4077,7 +4077,7 @@ const editFunction = async() => {
       $('#BillingRateDetailsView').html(billingRateHtml)
     }
 
-    if(SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Outside Consultant")
+    if(SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractors")
     {
      $('.show-availablity-sec').hide()
     }

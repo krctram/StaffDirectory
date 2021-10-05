@@ -6,7 +6,7 @@
   font-family: "Lato", sans-serif;
 }
 /* !Workbench */
-/* #workbenchPageContent {
+#workbenchPageContent {
   max-width: 100%;
 }
 .ControlZone--emphasisBackground,
@@ -23,7 +23,7 @@
 }
 .Canvas {
   margin: 0 !important;
-} */
+}
 /* !workbench */
 /* Grid  Section */
 .left {
