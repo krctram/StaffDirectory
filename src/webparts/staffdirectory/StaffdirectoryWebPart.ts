@@ -14,6 +14,7 @@ SPComponentLoader.loadCss("https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dis
 
 
 import * as $ from "jquery";
+import * as moment from "moment";
 import { sp } from "@pnp/sp/presets/all";
 import "../../ExternalRef/Js/jquery-1.12.4.js";
 import "../../ExternalRef/Js/jquery-ui.js";
@@ -2205,20 +2206,33 @@ var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
 
       var userpic =   ProfilePics.filter((p)=>p.ListItemAllFields.UserName&& li.UserEMail ? p.ListItemAllFields.UserName.toLowerCase()==li.UserEMail.toLowerCase():"");
 
-      var datetoday:any=new Date(new Date().toLocaleDateString()+" 00:00")
-
+      //var datetoday:any=new Date(new Date().toLocaleDateString()+" 00:00")
+      var today=new Date();
+      var datetoday=moment(today).format("YYYY-MM-DD");
 
 
       AllAvailabilityDetails.forEach((all)=>
       {
-        
+        var StartDate=moment(all.StartDate).format("YYYY-MM-DD");
+        var EndDate=moment(all.EndDate).format("YYYY-MM-DD");
         ///all.UserName.EMail == li.User.EMail && new Date(new Date(all.StartDate).toLocaleDateString()+" 00:00")<=datetoday && new Date(new Date(all.EndDate).toLocaleDateString()+" 00:00")>=datetoday&&all.ProjectType!="Marketing"&&all.ProjectType!="Overhead"?userPercentage += parseInt(all.Percentage):userPercentage += 0;
+        if(all.UserEMail == li.UserEMail && StartDate<=datetoday && EndDate>=datetoday&&all.ProjectType!="Marketing"&&all.ProjectType!="Overhead")
+        {
+          userPercentage += parseInt(all.Percentage)
+        }
+        else
+        {
+          userPercentage += 0
 
-        all.UserEMail == li.UserEMail && new Date(new Date(all.StartDate).toLocaleDateString()+" 00:00")<=datetoday && new Date(new Date(all.EndDate).toLocaleDateString()+" 00:00")>=datetoday&&all.ProjectType!="Marketing"&&all.ProjectType!="Overhead"?userPercentage += parseInt(all.Percentage):userPercentage += 0;
+        }
+        // all.UserEMail == li.UserEMail && new Date(new Date(all.StartDate).toLocaleDateString()+" 00:00")<=datetoday && new Date(new Date(all.EndDate).toLocaleDateString()+" 00:00")>=datetoday&&all.ProjectType!="Marketing"&&all.ProjectType!="Overhead"?userPercentage += parseInt(all.Percentage):userPercentage += 0;
 
         
-    var edate=new Date(new Date(all.EndDate).toLocaleDateString()+" 00:00");
-    var todayDate =new Date(new Date().toLocaleDateString()+" 00:00");
+    // var edate=new Date(new Date(all.EndDate).toLocaleDateString()+" 00:00");
+    // var todayDate =new Date(new Date().toLocaleDateString()+" 00:00");
+    var edate=moment(all.EndDate).format("YYYY-MM-DD");
+    var today=new Date();
+    var todayDate =moment(today).format("YYYY-MM-DD");
     ///if(all.UserName.EMail == li.User.EMail && edate>=todayDate&&all.ProjectType!="Marketing"&&all.ProjectType!="Overhead")
     if(all.UserEMail == li.UserEMail && edate>=todayDate&&all.ProjectType!="Marketing"&&all.ProjectType!="Overhead")
     {
@@ -2227,52 +2241,6 @@ var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
     }
         
       });
-      //console.log(EndDateArr.sort(sortFunction));
-      //  EndDateArr =EndDateArr.sort(sortFunction);
-      // if(EndDateArr.length>0)
-      // {
-      //   for(let i=0;i<EndDateArr.length; i++)
-      //   {
-      //     fDateArr =[];
-      //     var endPercentage=0
-      //     var leastEndDate =EndDateArr[i];
-      //      modifiedArray.forEach((cal)=>{
-      //       var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
-      //       if(new Date(<any>edate).toLocaleDateString()==new Date(leastEndDate).toLocaleDateString())
-      //       fDateArr.push(cal)
-      //     });
-      //     fDateArr.map((b)=>b.Percentage?endPercentage+=parseInt(b.Percentage):endPercentage+=0);
-      //     if(endPercentage<100){
-
-      //       // var nextDay = new Date(leastEndDate);
-      //       // nextDay.setDate(nextDay.getDate() + 1);
-      //       // NextAvailDate = nextDay.toLocaleDateString();
-      //       EndPercentage = endPercentage;
-      //       NextAvailDate = new Date(leastEndDate).toLocaleDateString();
-
-      //       // $('.todayAvail').html(`<label>Next available on :${new Date(leastEndDate).toLocaleDateString()}(${100-endPercentage}% Available)</label>`);
-      //       break;
-      //     }
-      //     else if(i==EndDateArr.length-1)
-      //     {
-      //       var tomorrow = new Date(leastEndDate);
-      //       tomorrow.setDate(tomorrow.getDate() + 1);
-      //       NextAvailDate = tomorrow.toLocaleDateString();
-      //       // $('.todayAvail').html(`<label>Next available on :${tomorrow.toLocaleDateString()}(${100}% Available)</label>`);
-      //       break;
-      //     }
-      //   }
-  
-      // }
-      // else{
-        
-      //   NextAvailDate = new Date().toLocaleDateString();
-      //   // NextAvailDate = new Date(leastEndDate).toLocaleDateString();
-      //   // $('.todayAvail').html(`<label>Next available on :${new Date(leastEndDate).toLocaleDateString()}</label>`)
-      // }
-      // console.log(NextAvailDate);
-
-
       EndDateArr =EndDateArr.sort(sortFunction);
       if(EndDateArr.length>0)
       {
@@ -2289,26 +2257,36 @@ var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
           var leastEndDate =EndDateArr[i];
   
            modifiedArray.forEach((cal)=>{
-            var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
-            var sdate=new Date(new Date(cal.StartDate).toLocaleDateString()+" 00:00");
+            // var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
+            // var sdate=new Date(new Date(cal.StartDate).toLocaleDateString()+" 00:00");
+            var edate=moment(cal.EndDate).format("YYYY-MM-DD");
+            var sdate=moment(cal.StartDate).format("YYYY-MM-DD");
           });
   
         }
   
         modifiedArray.forEach((cal)=>{
-          var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
-          var sdate=new Date(new Date(cal.StartDate).toLocaleDateString()+" 00:00");
-  
-          var Avainewday=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
-          Avainewday.setDate(Avainewday.getDate() + 1);
+          // var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
+          // var sdate=new Date(new Date(cal.StartDate).toLocaleDateString()+" 00:00");
+          // var Avainewday=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
+          // Avainewday.setDate(Avainewday.getDate() + 1);
+
+          var edate=moment(cal.EndDate).format("YYYY-MM-DD");
+          var sdate=moment(cal.StartDate).format("YYYY-MM-DD");
+
+          var Avainewday=moment(cal.EndDate).add(1, 'days').format("YYYY-MM-DD");
+          
+          
           //NextArr.push(Avainewday);
         if(new Date(Avainewday).getDay()==6)
         {
-        Avainewday.setDate(Avainewday.getDate() + 2);
+       // Avainewday.setDate(Avainewday.getDate() + 2);
+        Avainewday=moment(cal.EndDate).add(2, 'days').format("YYYY-MM-DD");
         NextArr.push(Avainewday);
         }
         else if(new Date(Avainewday).getDay()==0){
-        Avainewday.setDate(Avainewday.getDate() + 1);
+        // Avainewday.setDate(Avainewday.getDate() + 1);
+        Avainewday=moment(cal.EndDate).add(1, 'days').format("YYYY-MM-DD");
         NextArr.push(Avainewday);
         }
         else{
@@ -2364,26 +2342,32 @@ var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
 
             if(new Date(availArr[0]).getDay()==0)
             {
-              var Avainewday=new Date(new Date(availArr[0]).toLocaleDateString()+" 00:00");
-              Avainewday.setDate(Avainewday.getDate() + 1);
-            NextAvailDate=new Date(<any>Avainewday).toLocaleDateString();
+              // var Avainewday=new Date(new Date(availArr[0]).toLocaleDateString()+" 00:00");
+              // Avainewday.setDate(Avainewday.getDate() + 1);
+              var Avainewday=moment(availArr[0]).add(1, 'days').format("YYYY-MM-DD");
+           // NextAvailDate=new Date(<any>Avainewday).toLocaleDateString();
+            NextAvailDate=moment(Avainewday).format("MM/DD/YYYY");
             }
             else if(new Date(availArr[0]).getDay()==6)
             {
-              var Avainewday=new Date(new Date(availArr[0]).toLocaleDateString()+" 00:00");
-              Avainewday.setDate(Avainewday.getDate() + 2);
-        NextAvailDate=new Date(<any>Avainewday).toLocaleDateString();
+              // var Avainewday=new Date(new Date(availArr[0]).toLocaleDateString()+" 00:00");
+              // Avainewday.setDate(Avainewday.getDate() + 2);
+              var Avainewday=moment(availArr[0]).add(2, 'days').format("YYYY-MM-DD");
+        //NextAvailDate=new Date(<any>Avainewday).toLocaleDateString();
+        NextAvailDate=moment(Avainewday).format("MM/DD/YYYY");
             }
             else
             {
-        NextAvailDate=new Date(availArr[0]).toLocaleDateString();
+        //NextAvailDate=new Date(availArr[0]).toLocaleDateString();
+        NextAvailDate=moment(availArr[0]).format("MM/DD/YYYY");
             }
             break;
   
           }
       }
       else{
-      NextAvailDate=new Date(leastEndDate).toLocaleDateString();
+      //NextAvailDate=new Date(leastEndDate).toLocaleDateString();
+      NextAvailDate=moment(leastEndDate).format("MM/DD/YYYY");
       }
   
 
@@ -4582,8 +4566,13 @@ const useravailabilityDetails = async() =>{
   let availTableHtml = "";
   availList.forEach((avail)=>{
     availTableHtml  += `<tr><td>${avail.ProjectType}</td><td class="w100">${avail.Project?avail.Project:""}</td><td>${new Date(avail.StartDate).toLocaleDateString()}</td><td>${new Date(avail.EndDate).toLocaleDateString()}</td><td>${avail.Percentage}%</td><td class="w100">${avail.Comments?avail.Comments:""}</td><td><div class="d-flex"><div class="action-btn action-edit" data-toggle="modal" data-target="#addprojectmodal" data-id="${avail.ID}" id="editProjectAvailability"></div><div class="action-btn action-delete" data-id="${avail.ID}" id="deleteProjectAvailability"> </div></div></td></tr>`;
-    var edate=new Date(new Date(avail.EndDate).toLocaleDateString()+" 00:00");
-    var todayDate =new Date(new Date().toLocaleDateString()+" 00:00");
+
+    // var edate=new Date(new Date(avail.EndDate).toLocaleDateString()+" 00:00");
+    // var todayDate =new Date(new Date().toLocaleDateString()+" 00:00");
+
+    var edate=moment(avail.EndDate).format("YYYY-MM-DD");
+    var today=new Date();
+    var todayDate =moment(today).format("YYYY-MM-DD");
     if(edate>=todayDate&&avail.ProjectType!="Marketing"&&avail.ProjectType!="Overhead")
     {
       EndDateArr.push(new Date(avail.EndDate));
@@ -4655,19 +4644,26 @@ const useravailabilityDetails = async() =>{
         WeekArr=[];
 
       modifiedArray.forEach((cal)=>{
-        var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
-        var sdate=new Date(new Date(cal.StartDate).toLocaleDateString()+" 00:00");
+        // var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
+        // var sdate=new Date(new Date(cal.StartDate).toLocaleDateString()+" 00:00");
 
-        var Avainewday=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
-        Avainewday.setDate(Avainewday.getDate() + 1);
+        // var Avainewday=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
+        // Avainewday.setDate(Avainewday.getDate() + 1);
+
+        var edate=moment(cal.EndDate).format("YYYY-MM-DD");
+        var sdate=moment(cal.StartDate).format("YYYY-MM-DD");
+
+        var Avainewday=moment(cal.EndDate).add(1, 'days').format("YYYY-MM-DD");
        // NextArr.push(Avainewday);
         if(new Date(Avainewday).getDay()==6)
         {
-        Avainewday.setDate(Avainewday.getDate() + 2);
+       // Avainewday.setDate(Avainewday.getDate() + 2);
+       Avainewday=moment(cal.EndDate).add(2, 'days').format("YYYY-MM-DD");
         NextArr.push(Avainewday);
         }
         else if(new Date(Avainewday).getDay()==0){
-        Avainewday.setDate(Avainewday.getDate() + 1);
+       // Avainewday.setDate(Avainewday.getDate() + 1);
+       Avainewday=moment(cal.EndDate).add(1, 'days').format("YYYY-MM-DD");
         NextArr.push(Avainewday);
         }
         else{
@@ -4732,22 +4728,28 @@ const useravailabilityDetails = async() =>{
 
           if(new Date(availArr[0]).getDay()==0)
           {
-            var Avainewday=new Date(new Date(availArr[0]).toLocaleDateString()+" 00:00");
-            Avainewday.setDate(Avainewday.getDate() + 1);
-            $('.todayAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
+            // var Avainewday=new Date(new Date(availArr[0]).toLocaleDateString()+" 00:00");
+            // Avainewday.setDate(Avainewday.getDate() + 1);
+            var Avainewday=moment(availArr[0]).add(1, 'days').format("MM/DD/YYYY");
+            //$('.todayAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
+            $('.todayAvail').html(`<label>Next 100% available on : ${Avainewday}</label>`)
             $('.NextAvail').html(" ");
           
           }
           else if(new Date(availArr[0]).getDay()==6)
           {
-            var Avainewday=new Date(new Date(availArr[0]).toLocaleDateString()+" 00:00");
-            Avainewday.setDate(Avainewday.getDate() + 2);
-            $('.todayAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
+            // var Avainewday=new Date(new Date(availArr[0]).toLocaleDateString()+" 00:00");
+            // Avainewday.setDate(Avainewday.getDate() + 2);
+            var Avainewday=moment(availArr[0]).add(2, 'days').format("MM/DD/YYYY");
+            //$('.todayAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
+            $('.todayAvail').html(`<label>Next 100% available on : ${Avainewday}</label>`)
             $('.NextAvail').html(" ")
           }
           else
           {
-            $('.todayAvail').html(`<label>Next 100% available on : ${new Date(availArr[0]).toLocaleDateString()}</label>`)
+            var Avainewday=moment(availArr[0]).format("MM/DD/YYYY");
+            //$('.todayAvail').html(`<label>Next 100% available on : ${new Date(availArr[0]).toLocaleDateString()}</label>`)
+            $('.todayAvail').html(`<label>Next 100% available on : ${availArr[0]}</label>`)
             $('.NextAvail').html(" ")
           }
           break;
@@ -4792,18 +4794,25 @@ const useravailabilityDetails = async() =>{
         WeekArr1=[];
 
       modifiedArray.forEach((cal)=>{
-        var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
-        var sdate=new Date(new Date(cal.StartDate).toLocaleDateString()+" 00:00");
+        // var edate=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
+        // var sdate=new Date(new Date(cal.StartDate).toLocaleDateString()+" 00:00");
 
-        var Avainewday=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
-        Avainewday.setDate(Avainewday.getDate() + 1);
+        // var Avainewday=new Date(new Date(cal.EndDate).toLocaleDateString()+" 00:00");
+        // Avainewday.setDate(Avainewday.getDate() + 1);
+
+        var edate=moment(cal.EndDate).format("YYYY-MM-DD");
+        var sdate=moment(cal.StartDate).format("YYYY-MM-DD");
+
+        var Avainewday=moment(cal.EndDate).add(1, 'days').format("YYYY-MM-DD");
         if(new Date(Avainewday).getDay()==6)
         {
-        Avainewday.setDate(Avainewday.getDate() + 2);
+       // Avainewday.setDate(Avainewday.getDate() + 2);
+       Avainewday=moment(cal.EndDate).add(2, 'days').format("YYYY-MM-DD");
         NextArr1.push(Avainewday);
         }
         else if(new Date(Avainewday).getDay()==0){
-        Avainewday.setDate(Avainewday.getDate() + 1);
+        //Avainewday.setDate(Avainewday.getDate() + 1);
+        Avainewday=moment(cal.EndDate).add(1, 'days').format("YYYY-MM-DD");
         NextArr1.push(Avainewday);
         }
         else{
@@ -4857,20 +4866,25 @@ const useravailabilityDetails = async() =>{
 
           if(new Date(availArr1[0]).getDay()==0)
           {
-            var Avainewday=new Date(new Date(availArr1[0]).toLocaleDateString()+" 00:00");
-            Avainewday.setDate(Avainewday.getDate() + 1);
-            $('.NextAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
+            // var Avainewday=new Date(new Date(availArr1[0]).toLocaleDateString()+" 00:00");
+            // Avainewday.setDate(Avainewday.getDate() + 1);
+            var Avainewday=moment(availArr1[0]).add(1, 'days').format("MM/DD/YYYY");
+           // $('.NextAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
+            $('.NextAvail').html(`<label>Next 100% available on : ${Avainewday}</label>`)
           
           }
           else if(new Date(availArr1[0]).getDay()==6)
           {
-            var Avainewday=new Date(new Date(availArr1[0]).toLocaleDateString()+" 00:00");
-            Avainewday.setDate(Avainewday.getDate() + 2);
-            $('.NextAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
+            // var Avainewday=new Date(new Date(availArr1[0]).toLocaleDateString()+" 00:00");
+            // Avainewday.setDate(Avainewday.getDate() + 2);
+            var Avainewday=moment(availArr1[0]).add(2, 'days').format("MM/DD/YYYY");
+            //$('.NextAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
+            $('.NextAvail').html(`<label>Next 100% available on : ${Avainewday}</label>`)
           }
           else
           {
-            $('.NextAvail').html(`<label>Next 100% available on : ${new Date(availArr1[0]).toLocaleDateString()}</label>`)
+            var Avainewday=moment(availArr1[0]).format("MM/DD/YYYY");
+            $('.NextAvail').html(`<label>Next 100% available on : ${Avainewday}</label>`)
           }
           break;
       
