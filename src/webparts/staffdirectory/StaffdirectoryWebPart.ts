@@ -164,7 +164,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     </div>
     <div class="card">
       <div class="card-header nav-items  OutsidConsultant" id="headingTwo">
-          <div data-toggle="collapse" class="clsToggleCollapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" ><span class="nav-icon out-con"></span> Independent Contractors</div>
+          <div data-toggle="collapse" class="clsToggleCollapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" ><span class="nav-icon out-con"></span>Independent Contractors</div>
       </div>
       <div id="collapseTwo" class="clsCollapse collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
         <div class="card-body">
@@ -726,7 +726,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
      </div>
      </div>
      <div class="assisstant-info">
-     <h4>Assisstant</h4>
+     <h4>Assistant</h4>
      <div class="assisstant-name d-flex">
      <label>Name:</label>
      <div class="w-100"><div id="peoplepickerText" title="APickerField" style="display:none"></div>
@@ -2011,7 +2011,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
       localStorage.setItem("secSideShow", secSideShow);
       localStorage.setItem("SelectedTab", "aDirectory");
 
-      if((SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractors")||!SelectedUserProfile[0].showAvailability){
+      if((SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractor")||!SelectedUserProfile[0].showAvailability){
         $("#menu1").addClass("hide");
         $("#availabilityTab").addClass("hide");
       }else{
@@ -2039,7 +2039,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
       localStorage.setItem("secSideShow", secSideShow);
       localStorage.setItem("SelectedTab", "aDirectory");
 
-      if((SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractors")||!SelectedUserProfile[0].showAvailability){
+      if((SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractor")||!SelectedUserProfile[0].showAvailability){
         $("#menu1").addClass("hide");
         $("#availabilityTab").addClass("hide");
       }else{
@@ -2641,7 +2641,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
 
     }
     
-    if (details.Affiliation == "Independent Contractors") {
+    if (details.Affiliation == "Independent Contractor") {
 
        if(details.LastName!=""){
      
@@ -3386,7 +3386,7 @@ const LoadProfile = async(e) =>{
   selectedUsermail = SelectedUserProfile[0].Usermail;
   $(".profile-picture").attr("src", SelectedUserProfile[0].ProfilePic);
 
-  if((SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractors")||!SelectedUserProfile[0].showAvailability){
+  if((SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractor")||!SelectedUserProfile[0].showAvailability){
     $("#menu1").addClass("hide");
     $("#availabilityTab").addClass("hide");
   }else{
@@ -3440,7 +3440,7 @@ const LoadProfile = async(e) =>{
     $('.showAvail-view').hide();
   }
 
-  if(SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractors")
+  if(SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractor")
   {
     $('.showAvail-view').hide();
   }
@@ -3534,7 +3534,7 @@ const LoadProfile = async(e) =>{
 
           //Assistant-view-ShowHide
           if(SelectedUserProfile[0].AssisstantName){
-            $("#viewAssistant").html(`<h4>Assisstant</h4><div class="d-flex align-item-center">
+            $("#viewAssistant").html(`<h4>Assistant</h4><div class="d-flex align-item-center">
             <label>Assistant : </label><div class="lblRight" id="assistantViewpage">${SelectedUserProfile[0].AssisstantName}</div>
             </div>`)
           }else{
@@ -4036,7 +4036,7 @@ const editFunction = async() => {
       $('.BRHead').hide();
       $('.show-availablity-sec').hide()
 
-     if(SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractors")
+     if(SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractor")
      {
       $('.show-availablity-sec').hide()
      }
@@ -4077,7 +4077,7 @@ const editFunction = async() => {
       $('#BillingRateDetailsView').html(billingRateHtml)
     }
 
-    if(SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractors")
+    if(SelectedUserProfile[0].Affiliation != "Employee" && SelectedUserProfile[0].Affiliation != "Independent Contractor")
     {
      $('.show-availablity-sec').hide()
     }
