@@ -97,6 +97,7 @@ var OldUrl="";
 var NewUrl="";
 var relY = 0;
 var relX = 0;
+var paginationflag=false;
 
 export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffdirectoryWebPartProps> {
   public onInit(): Promise<void> {
@@ -349,7 +350,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Location</th>
     <th>Title</th>
     <th>Staff Function</th>
-    <th style="display: none">Assistant</th>
+    <th style="display:none;">Assistant</th>
     </tr>
     </thead>
     <tbody id="SdhOutsideTbody">
@@ -385,7 +386,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Location</th>
     <th>Title</th>
     <th>Staff Function</th>
-    <th style="display: none">Assistant</th>
+    <th style="display:none;">Assistant</th>
     </tr>
     </thead>
     <tbody id="SdhAffilateTbody">
@@ -421,7 +422,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Location</th>
     <th>Title</th>
     <th>Staff Function</th>
-    <th style="display: none">Assistant</th>
+    <th style="display:none;">Assistant</th>
     </tr>
     </thead>
     <tbody id="SdhAllumniTbody">
@@ -457,7 +458,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <th>Location</th>
     <th>Title</th>
     <th>Staff Function</th>
-    <th style="display: none">Assistant</th>
+    <th style="display:none;">Assistant</th>
     </tr>
     </thead>
     <tbody id="SdhAllPeopleTbody">
@@ -492,8 +493,8 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <table  id="SdgBillingrateTable">
     <thead>
     <tr>
-    <th>Name</th>
-    <th>Title</th>
+    <th class="w100">Name</th>
+    <th class="w100">Title</th>
     <th>Daily Rate</th>
     <th>Hourly Rate</th>
     <th>Effective Date</th>
@@ -633,9 +634,13 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 
      <div class="StaffStatus-view">
      <h4>Staff Status</h4>
-     <p class="lblRight" id="staffStatus"></p>
+     <!--<p class="lblRight" id="staffStatus"></p>-->
+     <div class="StaffStatus-view">
+     <div class="d-flex"><label>Status :</label><p class="lblRight" id="staffStatus"></p></div>
+
+     </div>
      <div id="workscheduleViewSec">
-     <div class="d-flex"><label>Work Schedule</label><p class="lblRight" id="workSchedule"></p></div>
+     <div class="d-flex"><label>Work Schedule :</label><p class="lblRight" id="workSchedule"></p></div>
 
      </div>
      </div>
@@ -1039,6 +1044,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
       SelectedUserProfile = [];
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1074,6 +1080,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".OutsidConsultant").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1107,6 +1114,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".SDHAffiliates").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1140,6 +1148,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".SDHAlumini").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1174,6 +1183,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".SDHShowAll").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1208,6 +1218,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".SDGOfficeInfo").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1244,6 +1255,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".sdhLocgrouping").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1260,6 +1272,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".sdhTitlgrouping").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1281,6 +1294,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".sdhAssistantgrouping").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1297,6 +1311,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".sdhfirstnamesort").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1319,8 +1334,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     });
 
     $(".sdhlastnamesort").click(() => {
-      $(".usernametag").hide();
-      $(".usernametag-last").show();
+
      // $(".usernametag").hide();
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
@@ -1341,12 +1355,14 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         lengthMenu: [50, 100],
       };
       bindEmpTable(options);
+      $(".usernametag").hide();
+      $(".usernametag-last").show();
+      paginationflag=true;
     });
 
     //OutSideConsultant
     $(".OutConslastnamesort").click(() => {
-      $(".usernametag").hide();
-      $(".usernametag-last").show();
+
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1366,11 +1382,15 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         lengthMenu: [50, 100],
       };
       bindOutTable(options);
+      $(".usernametag").hide();
+      $(".usernametag-last").show();
+      paginationflag=true;
     });
 
     $(".OutConsFirstnamesort").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1395,6 +1415,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".OutConsLocgrouping").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1411,6 +1432,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".OutConsStaffgrouping").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1426,8 +1448,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 
     // Affliates
     $(".Afflastnamesort").click(() => {
-      $(".usernametag").hide();
-      $(".usernametag-last").show();
+
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1447,11 +1468,15 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         lengthMenu: [50, 100],
       };
       bindAffTable(options);
+      $(".usernametag").hide();
+      $(".usernametag-last").show();
+      paginationflag=true;
     });
 
     $(".AffFirstnamesort").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1475,8 +1500,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 
     // Allumni
     $(".SDHAlumniLastName").click(() => {
-      $(".usernametag").hide();
-      $(".usernametag-last").show();
+
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1496,11 +1520,15 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         lengthMenu: [50, 100],
       };
       bindAlumTable(options);
+      $(".usernametag").hide();
+      $(".usernametag-last").show();
+      paginationflag=true;
     });
 
     $(".SDHAlumniFirstName").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1525,6 +1553,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".SDHAlumniOffice").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1540,8 +1569,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 
     // All Users
     $(".SDHShowAllLastName").click(() => {
-      $(".usernametag").hide();
-      $(".usernametag-last").show();
+
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1561,11 +1589,15 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         lengthMenu: [50, 100],
       };
       bindAllDetailTable(options);
+      $(".usernametag").hide();
+      $(".usernametag-last").show();
+      paginationflag=true;
     });
 
     $(".SDHShowAllFirstName").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1590,6 +1622,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".StaffAvailability").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1615,6 +1648,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".SDGBillingRate").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1625,24 +1659,59 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         tableSection.classList.remove("hide");
         userpage.classList.add("hide");
         }
-      var options = {
-        destroy: true,
-        order: [[0, "asc"]],
-        language: {
-          "emptyTable": "No data available"
-        },
-        lengthMenu: [50, 100],
-        columnDefs : [
+      // var options = {
+      //   destroy: true,
+      //   order: [[0, "asc"]],
+      //   language: {
+      //     "emptyTable": "No data available"
+      //   },
+      //   lengthMenu: [50, 100],
+      //   columnDefs : [
+      //     //hide the second & fourth column
+      //     { 'visible': false, 'targets': [5,6] }
+      //   ]
+      // };
+      // bindBillingRateTable(options);
+
+      var colno=7, tablename="sdgbillingrateTable";
+      var collapsedGroups = {};
+  var options = {
+    order: [[colno, "asc"]],
+    language: {
+      "emptyTable": "No data available"
+    },
+    lengthMenu: [50, 100],
+    destroy: true,
+    columnDefs : [
           //hide the second & fourth column
           { 'visible': false, 'targets': [5,6] }
-        ]
-      };
-      bindBillingRateTable(options);
+        ],
+    rowGroup: {
+      dataSrc: colno,
+      startRender: function (rows, group) {
+        var collapsed = !!collapsedGroups[group];
+        rows.nodes().each(function (r) {
+          r.style.display = collapsed ? "none" : "";
+        });
+        return $("<tr/>")
+          .append('<td colspan="8">' + group + " (" + rows.count() + ")</td>")
+          .attr("data-name", group)
+          .toggleClass("collapsed", collapsed);
+      },
+    },
+  };
+  $(`#${tablename} tbody`).on("click", "tr.dtrg-start", function () {
+    var name = $(this).data("name");
+    collapsedGroups[name] = !collapsedGroups[name];
+  });
+  bindBillingRateTable(options);
+
     });
 
     $(".SDGBillingRateTitle").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1653,25 +1722,58 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         tableSection.classList.remove("hide");
         userpage.classList.add("hide");
         }
-      var options = {
-        destroy: true,
-        order: [[5, "asc"]],
-        language: {
-          "emptyTable": "No data available"
-        },
-        lengthMenu: [50, 100],
-        columnDefs : [
+      // var options = {
+      //   destroy: true,
+      //   order: [[5, "asc"]],
+      //   language: {
+      //     "emptyTable": "No data available"
+      //   },
+      //   lengthMenu: [50, 100],
+      //   columnDefs : [
+      //     //hide the second & fourth column
+      //     { 'visible': false, 'targets': [5,6] }
+      //   ]
+      // };
+      // bindBillingRateTable(options);
+      //SdhEmpTableRowGrouping(7 ,"sdgbillingrateTable",bindBillingRateTable);
+      var colno=7, tablename="sdgbillingrateTable";
+      var collapsedGroups = {};
+  var options = {
+    order: [[colno, "asc"]],
+    language: {
+      "emptyTable": "No data available"
+    },
+    lengthMenu: [50, 100],
+    destroy: true,
+    columnDefs : [
           //hide the second & fourth column
           { 'visible': false, 'targets': [5,6] }
-        ]
-      };
-      bindBillingRateTable(options);
+        ],
+    rowGroup: {
+      dataSrc: colno,
+      startRender: function (rows, group) {
+        var collapsed = !!collapsedGroups[group];
+        rows.nodes().each(function (r) {
+          r.style.display = collapsed ? "none" : "";
+        });
+        return $("<tr/>")
+          .append('<td colspan="8">' + group + " (" + rows.count() + ")</td>")
+          .attr("data-name", group)
+          .toggleClass("collapsed", collapsed);
+      },
+    },
+  };
+  $(`#${tablename} tbody`).on("click", "tr.dtrg-start", function () {
+    var name = $(this).data("name");
+    collapsedGroups[name] = !collapsedGroups[name];
+  });
+  bindBillingRateTable(options);
+
     });
 
     $(".SDGBillingRateLastName").click(() => {
-      $(".usernametag").hide();
-      $(".usernametag-last").show();
-      if (viewDir.classList["contains"]("hide")) {
+      
+    if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
         editbtn.classList.remove("hide");
@@ -1681,7 +1783,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         tableSection.classList.remove("hide");
         userpage.classList.add("hide");
         }
-      var options = {
+      var options = { 
         destroy: true,
         order: [[6, "asc"]],
         language: {
@@ -1694,11 +1796,15 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         ]
       };
       bindBillingRateTable(options);
+      $(".usernametag").hide();
+      $(".usernametag-last").show();
+      paginationflag=true;
     });
 
-    $(".SDGBillingRateFirstName").click(() => {
+    $(".SDGBillingRateFirstName").click(() => {  
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1722,11 +1828,13 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
         ]
       };
       bindBillingRateTable(options);
+
     });
     
     $(".SDGOfficeInfoFirstName").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1748,8 +1856,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     });
     
     $(".SDGOfficeInfoLastName").click(() => {
-      $(".usernametag").hide();
-      $(".usernametag-last").show();
+
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1768,11 +1875,15 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
           lengthMenu: [50, 100],
         };
         bindOfficeTable(options);
+        $(".usernametag").hide();
+        $(".usernametag-last").show();
+        paginationflag=true;
     });
 
     $(".staffAvailOffice").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1789,6 +1900,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".staffAvailStaff").click(() => {
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1805,6 +1917,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     $(".staffAvailAffiliation").click(()=>{
       $(".usernametag").show();
       $(".usernametag-last").hide();
+      paginationflag=false;
       if (viewDir.classList["contains"]("hide")) {
         viewDir.classList.remove("hide");
         editDir.classList.add("hide");
@@ -1818,7 +1931,37 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
 
 
     });
+    $(document).on('click', '.paginate_button', function()
+    {
+      if(paginationflag){
+        $(".usernametag").hide();
+        $(".usernametag-last").show();
+       }
+       else{
+       $(".usernametag").show();
+       $(".usernametag-last").hide();
+      }
 
+    });
+    $(document).on('keyup', 'input[type="search"]', function()
+    {
+      if(paginationflag){
+        $(".usernametag").hide();
+        $(".usernametag-last").show();
+       }
+       else{
+        $(".usernametag").show();
+        $(".usernametag-last").hide();
+       }
+
+    });
+    
+    // $("input[type=search]").keyup(() => {
+    //   if(paginationflag){
+    //         $(".usernametag").hide();
+    //         $(".usernametag-last").show();
+    //        }
+    // });
     $("#btnEdit").click(() => {
       editFunction();
     });
@@ -2281,12 +2424,12 @@ var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
         if(new Date(Avainewday).getDay()==6)
         {
        // Avainewday.setDate(Avainewday.getDate() + 2);
-        Avainewday=moment(cal.EndDate).add(2, 'days').format("YYYY-MM-DD");
+        Avainewday=moment(Avainewday).add(2, 'days').format("YYYY-MM-DD");
         NextArr.push(Avainewday);
         }
         else if(new Date(Avainewday).getDay()==0){
         // Avainewday.setDate(Avainewday.getDate() + 1);
-        Avainewday=moment(cal.EndDate).add(1, 'days').format("YYYY-MM-DD");
+        Avainewday=moment(Avainewday).add(1, 'days').format("YYYY-MM-DD");
         NextArr.push(Avainewday);
         }
         else{
@@ -2530,15 +2673,15 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
         <td>${avli.Title}</td>
         <td>${avli.JobTitle}</td>
         <td>${avli.Affiliation}</td>
-        <td> 
+        <td data-order="${avli.Availability>0?avli.Availability:0}"> 
         <div class="d-flex align-item-center  availabilityProgress">
         
-        <div class="nextAvailDate">${avli.Availability == 0 ?`${avli.NextAvailDate} (${100 - avli.EndPercentage} %)` :""}</div>
+        <div class="nextAvailDate">${avli.Availability != 100?`${avli.NextAvailDate} (${100 - avli.EndPercentage} %)` :""}</div>
         
         <div class="availability-progress-bar" style="">
-        <div class="progress-value" style="height:100%;width:${100 - avli.Availability}%; background: ${avli.Availability <= 50? "#45b345":"#45b345"}"></div>
+        <div class="progress-value" style="height:100%;width:${avli.Availability >= 0?100 - avli.Availability:100}%; background: ${avli.Availability <= 50? "#45b345":"#45b345"}"></div>
         </div>
-        <span style="color:${avli.Availability <= 50? "#000000":"#000000"}">${avli.Availability}%</span></div>
+        <span style="color:${avli.Availability <= 50? "#000000":"#000000"}">${avli.Availability>0?avli.Availability:0}%</span></div>
         </td><td>${avli.Location}</td></tr>`
       }
 
@@ -2554,7 +2697,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
 
       EmpTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
 
-      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
+      <div class="usernametag-last" style="display:none;" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
       
       if(details.showAvailability==true){
         EmpTable +=`<div class="HUserDetails">
@@ -2580,7 +2723,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
           : `${details.JobTitle}`
           }</td><td>${
           details.Title
-        }</td><td style="display: none;">${
+        }</td><td style="display:none;;">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2590,7 +2733,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
       else{
         EmpTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
 
-      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
+      <div class="usernametag-last" style="display:none;" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
       
       if(details.showAvailability==true){
         EmpTable += `<div class="HUserDetails">
@@ -2616,7 +2759,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
           : `${details.JobTitle}`
           }</td><td>${
           details.Title
-        }</td><td style="display: none">${
+        }</td><td style="display:none;">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2631,7 +2774,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
      
       OutTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
       
-      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
+      <div class="usernametag-last" style="display:none;" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
 
       if(details.showAvailability==true){
         OutTable += `<div class="HUserDetails">
@@ -2659,7 +2802,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
           details.Title == "" ||details.Title == null
           ? "Not Available"
           : `${details.Title}`
-          }</td><td style="display: none">${
+          }</td><td style="display:none;">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2670,7 +2813,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
      
         OutTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
         
-        <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
+        <div class="usernametag-last" style="display:none;" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
   
         if(details.showAvailability==true){
           OutTable += `<div class="HUserDetails">
@@ -2698,7 +2841,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
             details.Title == "" ||details.Title == null
             ? "Not Available"
             : `${details.Title}`
-            }</td><td style="display: none">${
+            }</td><td style="display:none;">${
             details.Assistant == "" ||details.Assistant == null
             ? "Not Available"
             : `${details.Assistant}`
@@ -2713,7 +2856,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
 
       AffTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
       
-      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
+      <div class="usernametag-last" style="display:none;" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
 
       </div></td><td>${
         details.FirstName
@@ -2731,7 +2874,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
           details.Title == "" ||details.Title == null
           ? "Not Available"
           : `${details.Title}`
-          }</td><td style="display: none">${
+          }</td><td style="display:none;">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2741,7 +2884,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
       else{
         AffTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
       
-      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
+      <div class="usernametag-last" style="display:none;" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
 
       </div></td><td>${
         details.FirstName
@@ -2759,7 +2902,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
           details.Title == "" ||details.Title == null
           ? "Not Available"
           : `${details.Title}`
-          }</td><td style="display: none">${
+          }</td><td style="display:none;">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2773,7 +2916,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
 
       AlumTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
       
-      <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
+      <div class="usernametag-last" style="display:none;" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>
 
       </div></td><td>${
         details.FirstName
@@ -2791,7 +2934,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
           details.Title == "" ||details.Title == null
           ? "Not Available"
           : `${details.Title}`
-          }</td><td style="display: none">${
+          }</td><td style="display:none;">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2801,7 +2944,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
       else{
         AlumTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>
       
-        <div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
+        <div class="usernametag-last" style="display:none;" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>
   
         </div></td><td>${
           details.FirstName
@@ -2819,7 +2962,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
             details.Title == "" ||details.Title == null
             ? "Not Available"
             : `${details.Title}`
-            }</td><td style="display: none">${
+            }</td><td style="display:none;">${
             details.Assistant == "" ||details.Assistant == null
             ? "Not Available"
             : `${details.Assistant}`
@@ -2831,12 +2974,12 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
 
     if(details.LastName!=""){
     
-      AllDetailsTable += `<div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
+      AllDetailsTable += `<div class="usernametag-last" style="display:none;" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
 
     }
 
     else{
-      AllDetailsTable += `<div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
+      AllDetailsTable += `<div class="usernametag-last" style="display:none;" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
 
     }
 
@@ -2868,7 +3011,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
         details.Title == "" ||details.Title == null
         ? "Not Available"
         : `${details.Title}`
-        }</td><td style="display: none">${
+        }</td><td style="display:none;">${
           details.Assistant == "" ||details.Assistant == null
           ? "Not Available"
           : `${details.Assistant}`
@@ -2885,15 +3028,15 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
         if(details.Affiliation!="Alumni"&&details.Affiliation!="Affiliate")
     {
 
-        BillingRateTable += `<tr><td class="user-details-td"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>`
+        BillingRateTable += `<tr><td class="user-details-td w100"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>`
 
         if(details.LastName!=""){
 
-          BillingRateTable += `<div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
+          BillingRateTable += `<div class="usernametag-last" style="display:none;" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.LastName}, ${details.FirstName}</div>`
 
         }
         else{
-          BillingRateTable +=  `<div class="usernametag-last" style="display: none" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
+          BillingRateTable +=  `<div class="usernametag-last" style="display:none;" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.FirstName}</div>`
         }
         
         
@@ -2907,7 +3050,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
       </div>`
         }
  
-    BillingRateTable +=   `</div></td><td>${
+    BillingRateTable +=   `</div></td><td class="w100">${
       details.JobTitle
     }</td>
     <td><div>${
@@ -2938,7 +3081,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
       !details.EffectiveDate ? "Not Available" : new Date(details.EffectiveDate).toLocaleDateString()
     }</td><td>${
       !details.FirstName ? "" : details.FirstName
-    }</td><td>${
+    }</td><td data-sort=${details.LastName}>${
       !details.LastName ? "" : details.LastName
     }</td><td>${
       details.Title
@@ -3169,8 +3312,8 @@ const bindBillingRateTable = (option) => {
   $('.right').animate({
     scrollTop: 0
    });
-
  let BillingLoadTable= (<any>$("#SdgBillingrateTable")).DataTable(option);
+
  $("#drpTitleforBilling").change(function () {
   if ($("#drpTitleforBilling").val()=="Select") {
     BillingLoadTable.column(1).search("").draw();
@@ -3593,7 +3736,13 @@ const LoadProfile = async(e) =>{
           var Homenoval=SelectedUserProfile[0].HomeNo.split("^");
           if(Homenoval.length>0)
           {
-            Homenoval.map((ho)=>{ho?htmlforHomeNo+=ho+";":""});
+            //Homenoval.map((ho)=>{ho?htmlforHomeNo+=ho+";":""});
+            Homenoval.map((ph,i)=>{
+              if(i!=Homenoval.length-2)
+              htmlforHomeNo+= ph?`${ph}</br>`:``
+              else
+              htmlforHomeNo+=ph?`${ph}`:``
+            });
             $("#homeNoview").html(htmlforHomeNo);
           }
          else
@@ -3615,7 +3764,15 @@ const LoadProfile = async(e) =>{
           var Emnoval=SelectedUserProfile[0].EmergencyNo.split("^");
           if(Emnoval.length>0)
           {
-            Emnoval.map((EO)=>{EO?htmlforEmergencyNo+=EO+";":""});
+            // Emnoval.map((EO)=>{EO?htmlforEmergencyNo+=EO+";":""});
+            // $("#emergencyNoview").html(htmlforEmergencyNo);
+
+            Emnoval.map((ph,i)=>{
+              if(i!=Emnoval.length-2)
+              htmlforEmergencyNo+= ph?`${ph}</br>`:``
+              else
+              htmlforEmergencyNo+=ph?`${ph}`:``
+            });
             $("#emergencyNoview").html(htmlforEmergencyNo);
           }
           else{
@@ -4520,7 +4677,7 @@ insertObj={
     .items.getById(ItemID)
     .update(insertObj);
   alertify
-  .alert("Submited Successfully", function(){
+  .alert("Submitted Successfully", function(){
     alertify.message('OK');
     location.reload();
   });
@@ -4626,11 +4783,16 @@ const useravailabilityDetails = async() =>{
   //   }
   // }
   var flagnew = false;
-  if(SelectedUserProfile[0].Availability!=0)
+  if(SelectedUserProfile[0].Availability!=0 && SelectedUserProfile[0].Availability>0)
   {
-    $('.NextAvail').html(" ")
-    $('.todayAvail').html(`<label>Available Now : (${SelectedUserProfile[0].Availability}% Available)</label>`);
     flagnew=true;
+    $('.NextAvail').html(" ")
+
+    if(IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff))
+    $('.todayAvail').html(`<label style="top: -3rem;">Available Now : (${SelectedUserProfile[0].Availability}% Available)</label>`);
+    else
+    $('.todayAvail').html(`<label style="top: 0rem;">Available Now : (${SelectedUserProfile[0].Availability}% Available)</label>`);
+
   }
   else
   {
@@ -4658,12 +4820,12 @@ const useravailabilityDetails = async() =>{
         if(new Date(Avainewday).getDay()==6)
         {
        // Avainewday.setDate(Avainewday.getDate() + 2);
-       Avainewday=moment(cal.EndDate).add(2, 'days').format("YYYY-MM-DD");
+       Avainewday=moment(Avainewday).add(2, 'days').format("YYYY-MM-DD");
         NextArr.push(Avainewday);
         }
         else if(new Date(Avainewday).getDay()==0){
        // Avainewday.setDate(Avainewday.getDate() + 1);
-       Avainewday=moment(cal.EndDate).add(1, 'days').format("YYYY-MM-DD");
+       Avainewday=moment(Avainewday).add(1, 'days').format("YYYY-MM-DD");
         NextArr.push(Avainewday);
         }
         else{
@@ -4677,7 +4839,8 @@ const useravailabilityDetails = async() =>{
           for(var k=0;k<NextArr.length;k++){
             checkFlag = false;
             for(var j=0;j<StartArr.length;j++){
-            if(StartArr[j]<=NextArr[k] && NextArr[k]&&NextArr[k]<=EndArr[j]){
+           // if(StartArr[j]<=NextArr[k] && NextArr[k]&&NextArr[k]<=EndArr[j]){
+            if(StartArr[j]<=NextArr[k] && NextArr[k]<=EndArr[j]){
               //console.log(availArr);
               checkFlag=true;
             }
@@ -4732,7 +4895,11 @@ const useravailabilityDetails = async() =>{
             // Avainewday.setDate(Avainewday.getDate() + 1);
             var Avainewday=moment(availArr[0]).add(1, 'days').format("MM/DD/YYYY");
             //$('.todayAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
-            $('.todayAvail').html(`<label>Next 100% available on : ${Avainewday}</label>`)
+            if(IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff))
+            $('.todayAvail').html(`<label style="top: -3rem;">Next 100% available on : ${Avainewday}</label>`)
+            else
+            $('.todayAvail').html(`<label style="top: 0rem;">Next 100% available on : ${Avainewday}</label>`)
+
             $('.NextAvail').html(" ");
           
           }
@@ -4742,14 +4909,22 @@ const useravailabilityDetails = async() =>{
             // Avainewday.setDate(Avainewday.getDate() + 2);
             var Avainewday=moment(availArr[0]).add(2, 'days').format("MM/DD/YYYY");
             //$('.todayAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
-            $('.todayAvail').html(`<label>Next 100% available on : ${Avainewday}</label>`)
+            if(IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff))
+            $('.todayAvail').html(`<label style="top: -3rem;">Next 100% available on : ${Avainewday}</label>`)
+            else
+            $('.todayAvail').html(`<label style="top: 0rem;">Next 100% available on : ${Avainewday}</label>`)
+
             $('.NextAvail').html(" ")
           }
           else
           {
             var Avainewday=moment(availArr[0]).format("MM/DD/YYYY");
             //$('.todayAvail').html(`<label>Next 100% available on : ${new Date(availArr[0]).toLocaleDateString()}</label>`)
-            $('.todayAvail').html(`<label>Next 100% available on : ${availArr[0]}</label>`)
+            if(IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff))
+            $('.todayAvail').html(`<label style="top: -3rem;">Next 100% available on : ${Avainewday}</label>`)
+            else
+            $('.todayAvail').html(`<label style="top: 0rem;">Next 100% available on : ${Avainewday}</label>`)
+
             $('.NextAvail').html(" ")
           }
           break;
@@ -4807,12 +4982,12 @@ const useravailabilityDetails = async() =>{
         if(new Date(Avainewday).getDay()==6)
         {
        // Avainewday.setDate(Avainewday.getDate() + 2);
-       Avainewday=moment(cal.EndDate).add(2, 'days').format("YYYY-MM-DD");
+       Avainewday=moment(Avainewday).add(2, 'days').format("YYYY-MM-DD");
         NextArr1.push(Avainewday);
         }
         else if(new Date(Avainewday).getDay()==0){
         //Avainewday.setDate(Avainewday.getDate() + 1);
-        Avainewday=moment(cal.EndDate).add(1, 'days').format("YYYY-MM-DD");
+        Avainewday=moment(Avainewday).add(1, 'days').format("YYYY-MM-DD");
         NextArr1.push(Avainewday);
         }
         else{
@@ -4870,7 +5045,10 @@ const useravailabilityDetails = async() =>{
             // Avainewday.setDate(Avainewday.getDate() + 1);
             var Avainewday=moment(availArr1[0]).add(1, 'days').format("MM/DD/YYYY");
            // $('.NextAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
-            $('.NextAvail').html(`<label>Next 100% available on : ${Avainewday}</label>`)
+           if(IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff))
+           $('.NextAvail').html(`<label style="top: -5rem;">Next 100% available on : ${Avainewday}</label>`)
+           else
+            $('.NextAvail').html(`<label style="top: -2rem;">Next 100% available on : ${Avainewday}</label>`)
           
           }
           else if(new Date(availArr1[0]).getDay()==6)
@@ -4879,12 +5057,18 @@ const useravailabilityDetails = async() =>{
             // Avainewday.setDate(Avainewday.getDate() + 2);
             var Avainewday=moment(availArr1[0]).add(2, 'days').format("MM/DD/YYYY");
             //$('.NextAvail').html(`<label>Next 100% available on : ${new Date(<any>Avainewday).toLocaleDateString()}</label>`)
-            $('.NextAvail').html(`<label>Next 100% available on : ${Avainewday}</label>`)
+            if(IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff))
+            $('.NextAvail').html(`<label style="top: -5rem;">Next 100% available on : ${Avainewday}</label>`)
+            else
+            $('.NextAvail').html(`<label style="top: -2rem;">Next 100% available on : ${Avainewday}</label>`)
           }
           else
           {
             var Avainewday=moment(availArr1[0]).format("MM/DD/YYYY");
-            $('.NextAvail').html(`<label>Next 100% available on : ${Avainewday}</label>`)
+            if(IsAdminStaff||(SelectedUserProfile[0].Usermail.toLowerCase()==currentMail.toLowerCase()&&IsgeneralStaff))
+            $('.NextAvail').html(`<label style="top: -5rem;">Next 100% available on : ${Avainewday}</label>`)
+            else
+            $('.NextAvail').html(`<label style="top: -2rem;">Next 100% available on : ${Avainewday}</label>`)
           }
           break;
       
@@ -5160,7 +5344,7 @@ var pName=$("#projectName").val()
   $("#projectAvailNotes").val("")
   $("#Projectcomments").val("")
   alertify
-  .alert("Submited Successfully", function(){
+  .alert("Submitted Successfully", function(){
     alertify.message('OK');
     location.reload();
   }); 

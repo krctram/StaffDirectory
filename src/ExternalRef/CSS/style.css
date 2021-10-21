@@ -192,6 +192,7 @@ div#SdhEmpTable_info {
 table.dataTable tbody td,
 table.dataTable tbody th {
   padding: 12px 10px !important;
+  word-break: break-word;
 }
 a.paginate_button.current {
   background: #efefef !important;
@@ -1135,29 +1136,29 @@ button.ajs-button {
 /* div#UserAvailabilityTable_filter {
   margin-bottom: 4rem;
 } */
-.todayAvail {
+.availability-btn-section .todayAvail {
   text-align: Center;
   position: relative;
 }
-.todayAvail label {
+.availability-btn-section .todayAvail label {
   font-weight: bold;
   color: #198754;
   padding: 0.5rem 1rem;
   position: relative;
-  top: -1.5rem;
+  /* top: -1.5rem; */
+  /* top: 0rem; */
 }
-.NextAvail {
+.availability-btn-section .NextAvail {
   text-align: Center;
   position: relative;
-  top: 0rem;
 }
-.NextAvail label {
+.availability-btn-section .NextAvail label {
   font-weight: bold;
   color: #198754;
-  /* background: #198754; */
   padding: 0.5rem 1rem;
   position: relative;
-  top: -3rem;
+  /* top: -3rem; */
+  top: -2rem;
 }
 .loader-section {
   width: 100vw;
