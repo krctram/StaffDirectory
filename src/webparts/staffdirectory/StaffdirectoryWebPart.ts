@@ -593,6 +593,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <div class="tab-content">
    <div id="home" class="tab-pane fade in active">
    <div class="text-right dir-edit-sec" ><button class="btn btn-edit" id="btnEdit">Edit</button></div>
+   <div id="lastupdateDI" class="text-center text-info"></div>
      <div id="DirectoryInformation" class="d-flex view-directory">
      <div class="DInfo-left col-6">
      <div class="work-address-view">
@@ -883,6 +884,7 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
    </div>
    <div id="menu1" class="tab-pane fade">
      <div class="view-availability">
+     <div id="lastupdateAvail" class="text-center text-info"></div>
      <div class="availability-btn-section">
      <button class="btn btn-add-project"  data-toggle="modal" data-target="#addprojectmodal">Add Project</button>
      <div class="todayAvail"></div>
@@ -2322,10 +2324,10 @@ var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
   ProfilePics = await sp.web.getFolderByServerRelativeUrl(profileliburl).files.select("*,listItemAllFields").expand("listItemAllFields").get();
 
  //arun AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*,UserName/Title,UserName/EMail,UserName/Id").orderBy('Modified', false).expand("UserName").top(5000).get();
-  AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*").orderBy('EndDate', false).top(5000).get();
+  AllAvailabilityDetails = await sp.web.getList(listUrl + "SDGAvailability").items.select("*","Editor/Title").expand("Editor").orderBy('EndDate', false).top(5000).get();
 
   //arun await sp.web.getList(listUrl + "StaffDirectory").items.select("*","User/EMail","User/Title","User/FirstName","User/LastName","User/JobTitle","User/UserName","Assistant/EMail","Assistant/Title","User/Id","SDGOfficeDetails/Office","SDGOfficeDetails/ID").expand("User,Assistant,SDGOfficeDetails").get().then((listitem: any) => {
-  await sp.web.getList(listUrl + "StaffDirectory").items.select("*","User/EMail","User/Title","User/FirstName","User/LastName","User/JobTitle","User/UserName","User/Id","SDGOfficeDetails/Office","SDGOfficeDetails/ID").expand("User,SDGOfficeDetails").top(5000).get().then((listitem: any) => {
+  await sp.web.getList(listUrl + "StaffDirectory").items.select("*","User/EMail","User/Title","User/FirstName","User/LastName","User/JobTitle","User/UserName","User/Id","SDGOfficeDetails/Office","SDGOfficeDetails/ID,Editor/Title").expand("User,SDGOfficeDetails,Editor").top(5000).get().then((listitem: any) => {
     let tempArr = listitem.filter((l)=>l.SDGOfficeDetails != null)
         //console.log(tempArr);
       listitem.forEach((li) => {
@@ -2578,7 +2580,9 @@ var profileliburl=`/sites/SDGDirectory/ProfilePictures`; //for live
           showAvailability:li.ShowAvailability?true:false,
           NextAvailDate:NextAvailDate,
           EndPercentage:EndPercentage,
-          ListId:li.Id
+          ListId:li.Id,
+          Modified:li.Modified,
+          ModifiedBy:li.Editor.Title
         });
       });
 
@@ -3608,7 +3612,8 @@ const LoadProfile = async(e) =>{
               $("#UserSkypeID").hide();
             }
 
-            
+           var Modi=moment(SelectedUserProfile[0].Modified).format("DD/MM/YYYY");
+            $('#lastupdateDI').html(`<label>Staff Board Info last updated on ${Modi} by ${SelectedUserProfile[0].ModifiedBy}</label>`)
 
             //WorkAddress-view-ShowHide
 
@@ -4718,8 +4723,14 @@ const useravailabilityDetails = async() =>{
 
   availList=AllAvailabilityDetails.filter((a)=>{return a.UserEMail.toLowerCase()==SelectedUserProfile[0].Usermail.toLowerCase()});
 
+var myarray=availList;
+//myarray.sort((a,b) =>  b.Modified - a.Modified);
+myarray.sort((a,b) =>  <any>new Date(b.Modified) - <any>new Date(a.Modified));
 
-  
+var ModiAvail=moment(myarray[0].Modified).format("DD/MM/YYYY");
+var ModifiedBy=myarray[0].Editor.Title;
+$('#lastupdateAvail').html(`<label>Availability Board Info last updated on ${ModiAvail} by ${ModifiedBy}</label>`)
+
   let availTableHtml = "";
   availList.forEach((avail)=>{
     availTableHtml  += `<tr><td>${avail.ProjectType}</td><td class="w100">${avail.Project?avail.Project:""}</td><td>${new Date(avail.StartDate).toLocaleDateString()}</td><td>${new Date(avail.EndDate).toLocaleDateString()}</td><td>${avail.Percentage}%</td><td class="w100">${avail.Comments?avail.Comments:""}</td><td><div class="d-flex"><div class="action-btn action-edit" data-toggle="modal" data-target="#addprojectmodal" data-id="${avail.ID}" id="editProjectAvailability"></div><div class="action-btn action-delete" data-id="${avail.ID}" id="deleteProjectAvailability"> </div></div></td></tr>`;
