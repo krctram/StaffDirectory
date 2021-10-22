@@ -799,6 +799,7 @@ li.ms-core-menu-footer {
 .availabilityProgress span {
   font-weight: bold;
   font-size: 12px;
+  width: 70px;
 }
 .availability-progress-bar {
   background: #d6d6d6;
@@ -1305,18 +1306,20 @@ label.switch {
 
 div#lastupdateDI {
   position: relative;
-  top: -60px;
+  top: -62px;
   z-index: 1;
-  height: 0px;
+  height: 0;
+  left: 74px;
 }
 div#lastupdateDI label {
   font-weight: bold;
 }
 div#lastupdateAvail {
   position: relative;
-  top: -60px;
+  top: -62px;
   z-index: 1;
-  height: 0px;
+  height: 0;
+  left: 108px;
 }
 div#lastupdateAvail label {
   font-weight: bold;
