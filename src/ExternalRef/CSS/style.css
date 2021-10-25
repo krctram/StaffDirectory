@@ -457,7 +457,7 @@ span.display-picture {
 }
 .lblRight {
   color: #d62c01b3;
-  word-break: break-all;
+  word-break: break-word;
   padding-top: 6px;
 }
 .exp label {
@@ -1309,20 +1309,25 @@ div#lastupdateDI {
   top: -62px;
   z-index: 1;
   height: 0;
-  left: 74px;
 }
 div#lastupdateDI label {
   font-weight: bold;
+  /* position: relative;
+  left: 100px; */
 }
 div#lastupdateAvail {
   position: relative;
   top: -62px;
   z-index: 1;
   height: 0;
-  left: 108px;
+  left: 125px;
 }
 div#lastupdateAvail label {
   font-weight: bold;
+}
+#UserAvailabilityTable td,
+#UserAvailabilityTable th {
+  width: 13%;
 }
 /* #UserAvailabilityTable td,
 #UserAvailabilityTable th {

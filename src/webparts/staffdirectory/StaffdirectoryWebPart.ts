@@ -3613,7 +3613,10 @@ const LoadProfile = async(e) =>{
             }
 
            var Modi=moment(SelectedUserProfile[0].Modified).format("DD/MM/YYYY");
-            $('#lastupdateDI').html(`<label>Staff Board Info last updated on ${Modi} by ${SelectedUserProfile[0].ModifiedBy}</label>`)
+           if(SelectedUserProfile[0].showAvailability)
+            $('#lastupdateDI').html(`<label style="position: relative;left: 100px;">Directory Info last updated on ${Modi} by ${SelectedUserProfile[0].ModifiedBy}</label>`)
+            else
+            $('#lastupdateDI').html(`<label style="position: relative;left: 45px;">Directory Info last updated on ${Modi} by ${SelectedUserProfile[0].ModifiedBy}</label>`)
 
             //WorkAddress-view-ShowHide
 
