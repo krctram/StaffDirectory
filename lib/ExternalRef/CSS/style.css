@@ -1296,9 +1296,9 @@ label.switch {
   min-width: 13rem;
   font-weight: 700;
 }
-.w100 {
+.w200 {
   width: 200px !important;
-  word-break: break-all;
+  word-break: break-word;
 }
 .profile-details-left {
   margin-right: 2rem;

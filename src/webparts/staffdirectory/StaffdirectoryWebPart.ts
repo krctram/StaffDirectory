@@ -493,8 +493,8 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
     <table  id="SdgBillingrateTable">
     <thead>
     <tr>
-    <th class="w100">Name</th>
-    <th class="w100">Title</th>
+    <th class="w200">Name</th>
+    <th class="w200">Title</th>
     <th>Daily Rate</th>
     <th>Hourly Rate</th>
     <th>Effective Date</th>
@@ -904,12 +904,12 @@ export default class StaffdirectoryWebPart extends BaseClientSideWebPart<IStaffd
      <table id="UserAvailabilityTable">
      <thead>
      <tr>
-     <th>Project Type</th>
-     <th class="w100">Project Name</th>
+     <th class="w200">Project Type</th>
+     <th class="w200">Project Name</th>
      <th>Start Date</th>
      <th>End Date</th>
      <th>% Time</th>
-     <th class="w100">Comments</th>
+     <th class="w200">Comments</th>
      <th>Action</th>
      </tr>
      </thead>
@@ -3032,7 +3032,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
         if(details.Affiliation!="Alumni"&&details.Affiliation!="Affiliate")
     {
 
-        BillingRateTable += `<tr><td class="user-details-td w100"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>`
+        BillingRateTable += `<tr><td class="user-details-td w200"><div class="user-hover-details"><div class="usernametag" id=${details.ListId}><img src="${details.ProfilePic}" width="30" height="30" />${details.Name}</div>`
 
         if(details.LastName!=""){
 
@@ -3054,7 +3054,7 @@ if(oDetail.Office!="Home Office" && oDetail.Office!="Not Available"){
       </div>`
         }
  
-    BillingRateTable +=   `</div></td><td class="w100">${
+    BillingRateTable +=   `</div></td><td class="w200">${
       details.JobTitle
     }</td>
     <td><div>${
@@ -4736,7 +4736,7 @@ $('#lastupdateAvail').html(`<label>Availability Board Info last updated on ${Mod
 
   let availTableHtml = "";
   availList.forEach((avail)=>{
-    availTableHtml  += `<tr><td>${avail.ProjectType}</td><td class="w100">${avail.Project?avail.Project:""}</td><td>${new Date(avail.StartDate).toLocaleDateString()}</td><td>${new Date(avail.EndDate).toLocaleDateString()}</td><td>${avail.Percentage}%</td><td class="w100">${avail.Comments?avail.Comments:""}</td><td><div class="d-flex"><div class="action-btn action-edit" data-toggle="modal" data-target="#addprojectmodal" data-id="${avail.ID}" id="editProjectAvailability"></div><div class="action-btn action-delete" data-id="${avail.ID}" id="deleteProjectAvailability"> </div></div></td></tr>`;
+    availTableHtml  += `<tr><td class="w200">${avail.ProjectType}</td><td class="w200">${avail.Project?avail.Project:""}</td><td>${new Date(avail.StartDate).toLocaleDateString()}</td><td>${new Date(avail.EndDate).toLocaleDateString()}</td><td>${avail.Percentage}%</td><td class="w200">${avail.Comments?avail.Comments:""}</td><td><div class="d-flex"><div class="action-btn action-edit" data-toggle="modal" data-target="#addprojectmodal" data-id="${avail.ID}" id="editProjectAvailability"></div><div class="action-btn action-delete" data-id="${avail.ID}" id="deleteProjectAvailability"> </div></div></td></tr>`;
 
     // var edate=new Date(new Date(avail.EndDate).toLocaleDateString()+" 00:00");
     // var todayDate =new Date(new Date().toLocaleDateString()+" 00:00");
